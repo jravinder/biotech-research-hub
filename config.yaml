@@ -1,0 +1,252 @@
+# Biotech Research Hub — Huntington's Disease Configuration
+# This is the full reference config used by HD Research Hub.
+
+disease:
+  name: "Huntington's Disease"
+  short_name: "HD"
+  mondo_id: "MONDO_0007739"
+  condition_search_term: "Huntington Disease"
+  description: "A hereditary neurodegenerative disorder caused by CAG repeat expansion in the HTT gene"
+  gene: "HTT"
+  protein: "Huntingtin"
+
+branding:
+  app_name: "HD Research Hub"
+  tagline: "AI-Powered HD Research"
+  colors:
+    primary: "#F59E0B"
+    primary_dark: "#D97706"
+    secondary: "#92400E"
+    accent: "#FB7185"
+    surface: "#FFFBEB"
+    background: "#fdf9e9"
+    text: "#1c1c13"
+  support_orgs:
+    - name: "HDSA"
+      url: "https://hdsa.org"
+      description: "Social workers, support groups, HD specialists"
+    - name: "HDBuzz"
+      url: "https://en.hdbuzz.net"
+      description: "Scientists explain HD research in plain language"
+    - name: "HDYO"
+      url: "https://www.hdyo.org"
+      description: "HD Youth Organization, resources for young people"
+
+search:
+  pubmed_query: '("Huntington Disease"[MeSH] OR "Huntington Disease"[Title/Abstract] OR huntingtin[Title/Abstract] OR HTT[Title/Abstract])'
+  include_terms:
+    "huntington disease": 6
+    "huntington's disease": 6
+    "huntingtin": 5
+    "HTT": 4
+    "polyglutamine": 3
+    "polyq": 3
+    "CAG repeat": 4
+    "chorea": 2
+    "striatal": 2
+    "medium spiny neuron": 3
+  priority_terms:
+    "treatment": 2
+    "therapy": 2
+    "drug": 2
+    "clinical trial": 3
+    "repurposing": 3
+    "gene therapy": 2
+    "antisense": 2
+    "somatic expansion": 3
+  exclude_terms:
+    "atrial fibrillation": 6
+    "cardiac": 4
+    "huntington beach": 8
+  relevance_threshold: 6
+  days: 30
+  max_results: 20
+  paper_scout_queries:
+    - "huntington disease treatment"
+    - "huntington disease gene therapy"
+    - "huntington somatic expansion CAG"
+    - "huntington drug repurposing"
+    - "huntington biomarker neurofilament"
+    - "huntington CRISPR"
+    - "huntington antisense oligonucleotide"
+    - "huntington neuroinflammation"
+    - "huntington autophagy mTOR"
+    - "huntington digital twin clinical trial"
+    - "huntingtin protein structure drug target"
+    - "MSH3 FAN1 PMS1 repeat expansion"
+  topic_tags:
+    "gene therapy": "Gene Therapy"
+    "antisense": "ASO"
+    "somatic expansion": "Somatic Expansion"
+    "MSH3": "DNA Repair"
+    "FAN1": "DNA Repair"
+    "PMS1": "DNA Repair"
+    "clinical trial": "Clinical Trials"
+    "biomarker": "Biomarkers"
+    "CRISPR": "Gene Editing"
+    "neuroinflammation": "Neuroinflammation"
+    "mTOR": "Autophagy"
+    "drug repurposing": "Drug Repurposing"
+
+targets:
+  - symbol: "MSH3"
+    name: "MutS Homolog 3"
+    description: "Part of MutSbeta complex. Recognizes CAG repeat loops. Rate-limiting: 50% reduction = 50% less expansion."
+    uniprot_id: "P20585"
+    alphafold_id: "AF-P20585-F1"
+    druggability: "high"
+    role: "drives"
+    drug_candidates:
+      - name: "siRNA/shRNA MSH3"
+        mechanism: "Gene knockdown"
+        stage: "preclinical"
+        confidence: 90
+      - name: "LQT-23"
+        mechanism: "Allosteric MutSbeta inhibitor"
+        stage: "preclinical"
+        confidence: 85
+        developer: "LoQus23 Therapeutics"
+
+  - symbol: "FAN1"
+    name: "Fanconi Anemia-Associated Nuclease 1"
+    description: "Protective nuclease that opposes somatic expansion. Strongest genetic association to delayed onset."
+    uniprot_id: "Q9Y2M0"
+    alphafold_id: "AF-Q9Y2M0-F1"
+    druggability: "medium"
+    role: "opposes"
+    drug_candidates:
+      - name: "HRN001"
+        mechanism: "FAN1 upregulation via MISBA platform"
+        stage: "preclinical"
+        confidence: 80
+        developer: "Harness Therapeutics"
+
+  - symbol: "PMS1"
+    name: "Post-Meiotic Segregation 1"
+    description: "MutL family member. Splice modulators can reduce PMS1, suppressing expansion while preserving cancer-protective MMR."
+    uniprot_id: "P54277"
+    alphafold_id: "AF-P54277-F1"
+    druggability: "high"
+    role: "drives"
+    drug_candidates:
+      - name: "SKY-0515"
+        mechanism: "HTT + PMS1 splice modifier"
+        stage: "phase2"
+        confidence: 85
+        developer: "Skyhawk Therapeutics"
+      - name: "RGT-0474060"
+        mechanism: "Oral PMS1 inhibitor"
+        stage: "preclinical"
+        confidence: 75
+        developer: "Rgenta Therapeutics"
+
+  - symbol: "MLH1"
+    name: "MutL Homolog 1"
+    description: "Forms MutLgamma endonuclease with MLH3. Nicks DNA opposite CAG loops, enabling expansion."
+    uniprot_id: "P40692"
+    alphafold_id: "AF-P40692-F1"
+    druggability: "medium"
+    role: "drives"
+    drug_candidates:
+      - name: "Cyclic peptide inhibitors"
+        mechanism: "MLH1-MSH3 interaction blocker"
+        stage: "preclinical"
+        confidence: 70
+
+  - symbol: "LIG1"
+    name: "DNA Ligase 1"
+    description: "Seals nicks during repair, locking in expansion. K845N variant delays onset by 7-8 years."
+    uniprot_id: "P18858"
+    alphafold_id: "AF-P18858-F1"
+    druggability: "emerging"
+    role: "drives"
+    drug_candidates:
+      - name: "Ligase fidelity enhancers"
+        mechanism: "Mimic K845N protective effect"
+        stage: "concept"
+        confidence: 60
+
+  - symbol: "HTT"
+    name: "Huntingtin"
+    description: "The primary disease gene. CAG expansion produces toxic mutant huntingtin protein."
+    uniprot_id: "P42858"
+    alphafold_id: "AF-P42858-F1"
+    druggability: "high"
+    role: "primary"
+    drug_candidates:
+      - name: "PTC518 (votoplam)"
+        mechanism: "HTT splice modifier"
+        stage: "phase2"
+        confidence: 80
+        developer: "PTC Therapeutics"
+
+repurposing:
+  known_candidates:
+    - drug: "Valproic acid"
+      target: "HDAC"
+      status: "Tested in HD trials"
+      mechanism: "HDAC inhibitor, increases BDNF"
+    - drug: "Pridopidine"
+      target: "Sigma-1R"
+      status: "Phase 3 (PROOF-HD)"
+      mechanism: "Sigma-1 receptor agonist"
+    - drug: "Metformin"
+      target: "mTOR/AMPK"
+      status: "Preclinical"
+      mechanism: "Activates autophagy via AMPK"
+    - drug: "Laquinimod"
+      target: "NFkB"
+      status: "Phase 2 completed"
+      mechanism: "Reduces neuroinflammation"
+    - drug: "Bevantolol (SOM3355)"
+      target: "Various"
+      status: "Phase IIb"
+      mechanism: "AI-discovered (SOM Biotech)"
+  seed_hypotheses:
+    - id: "h001"
+      drug: "Tocilizumab"
+      target: "IL-6 / neuroinflammation"
+      rationale: "IL-6 elevated in HD CSF. Anti-IL-6 may reduce neuroinflammation."
+      initial_score: 80
+    - id: "h002"
+      drug: "Metformin"
+      target: "mTOR/AMPK"
+      rationale: "Activates autophagy, clears mutant HTT aggregates."
+      initial_score: 72
+    - id: "h003"
+      drug: "Rapamycin"
+      target: "mTOR"
+      rationale: "mTOR inhibition enhances autophagy of mHTT."
+      initial_score: 68
+
+community_news:
+  rss_feeds:
+    - name: "HDBuzz"
+      url: "https://en.hdbuzz.net/feed"
+
+analytics:
+  ga4_id: "G-N8BMJ7ZG5V"
+
+llm:
+  provider: "ollama"
+  base_url: "http://localhost:11434"
+  model: "gemma4:latest"
+  embed_model: "nomic-embed-text"
+  temperature: 0.2
+  num_ctx: 65536
+
+api:
+  nim_enabled: true
+  nim_model: "nvidia/llama-3.1-nemotron-nano-8b-v1"
+  sarvam_enabled: true
+
+i18n:
+  supported_languages: "en,hi,ta,te,bn,mr,kn,ml,gu,pa,ur,es,fr,de,ja,zh-CN,pt,ar,ko,it,ru"
+
+ci:
+  bot_name: "HD Research Bot"
+  bot_email: "bot@hdresearchhub.dev"
+
+deployment:
+  repo_url: "https://github.com/jravinder/hd-research-agent"
+  site_url: "https://hd-research-agent.vercel.app"

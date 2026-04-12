@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.env
+runs/
+*.egg-info/
+dist/
+build/
+.venv/
+.vercel
+node_modules/
