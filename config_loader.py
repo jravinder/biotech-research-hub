@@ -18,7 +18,11 @@ _config = None
 REQUIRED_FIELDS = [
     ("disease", "name"),
     ("disease", "short_name"),
+    ("disease", "mondo_id"),
+    ("search", "pubmed_query"),
 ]
+
+VALID_LLM_PROVIDERS = {"ollama", "openai", "anthropic", "nim"}
 
 DEFAULTS = {
     "disease": {
@@ -120,6 +124,64 @@ def _validate(cfg):
             print(f"  - {m}")
         print(f"\nSee examples/configs/ for reference configs.\n")
         sys.exit(1)
+
+    if not cfg.get("targets"):
+        print(f"\nConfig error: targets must include at least one entry in {CONFIG_PATH}.")
+        print("Add at least one target under targets[].")
+        print()
+        sys.exit(1)
+
+    provider = str(cfg["llm"].get("provider", "")).strip().lower()
+    if provider not in VALID_LLM_PROVIDERS:
+        print(f"\nConfig error: unsupported llm.provider '{provider}' in {CONFIG_PATH}.")
+        print(f"Supported providers: {', '.join(sorted(VALID_LLM_PROVIDERS))}")
+        print()
+        sys.exit(1)
+
+    model = str(cfg["llm"].get("model", "")).strip()
+    if not model:
+        print(f"\nConfig error: llm.model is required in {CONFIG_PATH}.")
+        print()
+        sys.exit(1)
+
+    if provider == "ollama":
+        if not str(cfg["llm"].get("base_url", "")).strip():
+            print(f"\nConfig error: llm.base_url is required for ollama in {CONFIG_PATH}.")
+            print()
+            sys.exit(1)
+        return
+
+    api_key = (
+        str(cfg["llm"].get("api_key", "")).strip()
+        or str(os.environ.get("LLM_API_KEY", "")).strip()
+    )
+
+    if provider == "openai":
+        if not api_key:
+            print(f"\nConfig error: OpenAI provider requires llm.api_key or LLM_API_KEY.")
+            print()
+            sys.exit(1)
+        return
+
+    if provider == "anthropic":
+        if not api_key:
+            print(f"\nConfig error: Anthropic provider requires llm.api_key or LLM_API_KEY.")
+            print()
+            sys.exit(1)
+        return
+
+    if provider == "nim":
+        nim_url = str(cfg["api"].get("nim_url", "")).strip()
+        nim_key = str(os.environ.get("NIM_API_KEY", "")).strip() or api_key
+        if not nim_url:
+            print(f"\nConfig error: api.nim_url is required for nim provider.")
+            print()
+            sys.exit(1)
+        if not nim_key:
+            print(f"\nConfig error: NIM provider requires NIM_API_KEY or llm.api_key/LLM_API_KEY.")
+            print()
+            sys.exit(1)
+        return
 
 
 def load_config(path=None):
