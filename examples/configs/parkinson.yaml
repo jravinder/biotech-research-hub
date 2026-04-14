@@ -1,0 +1,130 @@
+# Biotech Research Hub — Parkinson's Disease starter config
+
+disease:
+  name: "Parkinson's Disease"
+  short_name: "PD"
+  mondo_id: "MONDO_0005180"
+  condition_search_term: "Parkinson Disease"
+  description: "A progressive neurodegenerative disorder affecting movement, cognition, and autonomic function."
+  gene: "SNCA"
+  protein: "Alpha-synuclein"
+
+branding:
+  app_name: "PD Research Hub"
+  tagline: "Grounded Parkinson's Disease Research"
+  colors:
+    primary: "#0f766e"
+    primary_dark: "#115e59"
+    secondary: "#164e63"
+    accent: "#14b8a6"
+    surface: "#ecfeff"
+    background: "#f0fdfa"
+    text: "#102a2a"
+  support_orgs:
+    - name: "Parkinson's Foundation"
+      url: "https://www.parkinson.org"
+      description: "Education, helpline, local chapters, and patient resources."
+    - name: "Michael J. Fox Foundation"
+      url: "https://www.michaeljfox.org"
+      description: "Research funding, trial matching, and PD science updates."
+    - name: "Davis Phinney Foundation"
+      url: "https://davisphinneyfoundation.org"
+      description: "Living well with Parkinson's guidance and community support."
+
+search:
+  pubmed_query: '("Parkinson Disease"[MeSH Terms] OR "Parkinson disease"[Title/Abstract] OR parkinsonian[Title/Abstract] OR alpha-synuclein[Title/Abstract] OR SNCA[Title/Abstract])'
+  include_terms:
+    "parkinson disease": 6
+    "parkinson's disease": 6
+    "parkinsonian": 4
+    "alpha-synuclein": 5
+    "snca": 4
+    "dopaminergic": 3
+    "substantia nigra": 3
+    "levodopa": 2
+  priority_terms:
+    "treatment": 2
+    "therapy": 2
+    "clinical trial": 3
+    "biomarker": 2
+    "gene therapy": 2
+    "neuroinflammation": 2
+    "mitochondria": 2
+  exclude_terms:
+    "parkinsonism secondary to": 4
+    "atypical parkinsonism": 2
+    "huntington disease": 6
+  relevance_threshold: 6
+  days: 30
+  max_results: 20
+  paper_scout_queries:
+    - "parkinson disease treatment"
+    - "parkinson alpha-synuclein therapy"
+    - "parkinson LRRK2 biomarker"
+    - "parkinson gene therapy"
+    - "parkinson neuroinflammation"
+    - "parkinson mitochondria"
+  topic_tags:
+    "alpha-synuclein": "Protein Aggregation"
+    "LRRK2": "Genetics"
+    "GBA": "Genetics"
+    "clinical trial": "Clinical Trials"
+    "gene therapy": "Gene Therapy"
+    "biomarker": "Biomarkers"
+
+targets:
+  - symbol: "SNCA"
+    name: "Alpha-synuclein"
+    description: "Core aggregation-prone protein in Parkinson's disease pathology."
+    uniprot_id: "P37840"
+    alphafold_id: "AF-P37840-F1"
+    druggability: "high"
+    role: "primary"
+  - symbol: "LRRK2"
+    name: "Leucine-Rich Repeat Kinase 2"
+    description: "A major genetic and signaling target in familial and sporadic Parkinson's disease."
+    uniprot_id: "Q5S007"
+    alphafold_id: "AF-Q5S007-F1"
+    druggability: "high"
+    role: "drives"
+  - symbol: "GBA1"
+    name: "Glucocerebrosidase"
+    description: "Lysosomal target linked to Parkinson's risk and alpha-synuclein clearance."
+    uniprot_id: "P04062"
+    alphafold_id: "AF-P04062-F1"
+    druggability: "medium"
+    role: "modulates"
+
+repurposing:
+  known_candidates:
+    - drug: "Ambroxol"
+      target: "GBA1"
+      status: "Clinical study"
+      mechanism: "Chaperone that may improve lysosomal function"
+    - drug: "Exenatide"
+      target: "GLP-1"
+      status: "Clinical study"
+      mechanism: "Metabolic and neuroprotective signaling"
+  seed_hypotheses:
+    - id: "pd001"
+      drug: "Nilotinib"
+      target: "c-Abl"
+      rationale: "May alter alpha-synuclein handling and neuronal stress pathways."
+      initial_score: 62
+
+community_news:
+  rss_feeds:
+    - name: "Parkinson's Foundation"
+      url: "https://www.parkinson.org/blog/rss.xml"
+
+llm:
+  provider: "ollama"
+  base_url: "http://localhost:11434"
+  model: "gemma4:latest"
+  embed_model: "nomic-embed-text"
+  temperature: 0.2
+  num_ctx: 65536
+
+deployment:
+  repo_url: "https://github.com/jravinder/biotech-research-hub"
+  site_url: ""

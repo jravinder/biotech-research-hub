@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ config.branding.app_name }}</title>
+  <meta name="description" content="{{ config.disease.description }}">
+  <style>
+    :root {
+      --primary: {{ config.branding.colors.primary }};
+      --primary-dark: {{ config.branding.colors.primary_dark }};
+      --secondary: {{ config.branding.colors.secondary }};
+      --accent: {{ config.branding.colors.accent }};
+      --surface: {{ config.branding.colors.surface }};
+      --background: {{ config.branding.colors.background }};
+      --text: {{ config.branding.colors.text }};
+      --border: rgba(28, 28, 19, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: linear-gradient(180deg, var(--surface), var(--background));
+      color: var(--text);
+      line-height: 1.5;
+    }
+    a { color: var(--primary-dark); }
+    .shell { max-width: 1120px; margin: 0 auto; padding: 24px; }
+    .nav, .card, .hero, .table-wrap { background: rgba(255, 255, 255, 0.72); backdrop-filter: blur(10px); }
+    .nav {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .hero {
+      margin-top: 18px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 40px 28px;
+      background-image:
+        radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 22%, transparent), transparent 35%),
+        radial-gradient(circle at left center, color-mix(in srgb, var(--primary) 20%, transparent), transparent 30%);
+    }
+    .eyebrow { text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px; color: var(--secondary); font-weight: 700; }
+    h1, h2, h3 { margin: 0 0 12px; line-height: 1.05; }
+    h1 { font-size: clamp(2.8rem, 7vw, 5.4rem); max-width: 12ch; }
+    h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); }
+    .lede { font-size: 1.1rem; max-width: 64ch; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-secondary { border-color: var(--border); color: var(--text); background: rgba(255,255,255,0.55); }
+    .grid { display: grid; gap: 18px; }
+    .grid-4 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .section { margin-top: 28px; }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+    .stat { font-size: 2rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 4px; }
+    .muted { color: rgba(28,28,19,0.7); }
+    ul.clean { list-style: none; padding: 0; margin: 0; }
+    ul.clean li + li { margin-top: 14px; }
+    .paper-title, .org-name, .target-name { font-weight: 700; }
+    .meta { font-size: 0.9rem; color: rgba(28,28,19,0.65); }
+    .table-wrap {
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--secondary); background: rgba(255,255,255,0.5); }
+    tr:last-child td { border-bottom: none; }
+    code.inline { background: rgba(255,255,255,0.75); padding: 2px 6px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="nav">
+      <div>
+        <div class="eyebrow">Biotech Research Hub Template</div>
+        <div><strong>{{ config.branding.app_name }}</strong></div>
+      </div>
+      <div class="meta">Disease config: {{ config.disease.short_name }} | Updated {{ last_updated_label }}</div>
+    </div>
+
+    <section class="hero">
+      <div class="eyebrow">Config-Driven Workspace</div>
+      <h1>{{ config.disease.name }} Research, Explained</h1>
+      <p class="lede">{{ config.disease.description }} This workspace is generated from one config file and the same code can be reused for a different disease without rebuilding the product surface.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="{{ config.deployment.site_url or '#' }}">Open Live Site</a>
+        <a class="btn btn-secondary" href="{{ config.deployment.repo_url or '#' }}">View Source</a>
+      </div>
+    </section>
+
+    <section class="section grid grid-4">
+      <div class="card">
+        <div class="stat">{{ stats.papers_count or 0 }}</div>
+        <div>Recent papers</div>
+      </div>
+      <div class="card">
+        <div class="stat">{{ stats.trials_count or 0 }}</div>
+        <div>Active trials</div>
+      </div>
+      <div class="card">
+        <div class="stat">{{ stats.recruiting_count or 0 }}</div>
+        <div>Recruiting now</div>
+      </div>
+      <div class="card">
+        <div class="stat">{{ stats.targets_count or targets|length }}</div>
+        <div>Tracked targets</div>
+      </div>
+    </section>
+
+    <section class="section grid grid-3">
+      <div class="card">
+        <div class="eyebrow">Learn</div>
+        <h2>Start With the Field Map</h2>
+        <p class="muted">Use Gemma to explain the disease in plain language, summarize what matters, and help someone move from curious to useful faster.</p>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Track</div>
+        <h2>Watch the Evidence</h2>
+        <p class="muted">The same pipeline gathers papers, trials, and community updates into a consistent structure that can be searched, summarized, and rendered.</p>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Fork</div>
+        <h2>Launch Your Own Flavor</h2>
+        <p class="muted">Advanced users can swap the config, bring their own feeds and targets, and stand up a disease-specific workspace on local or hosted infrastructure.</p>
+      </div>
+    </section>
+
+    <section class="section grid grid-3">
+      <div class="card">
+        <div class="eyebrow">Support Orgs</div>
+        <h2>Who Can Help</h2>
+        <ul class="clean">
+          {% for org in support_orgs %}
+          <li>
+            <div class="org-name"><a href="{{ org.url }}">{{ org.name }}</a></div>
+            <div class="muted">{{ org.description }}</div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Tracked Targets</div>
+        <h2>Configured Target Set</h2>
+        <ul class="clean">
+          {% for target in targets %}
+          <li>
+            <div class="target-name">{{ target.symbol }} · {{ target.name }}</div>
+            <div class="muted">{{ target.description }}</div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Template Contract</div>
+        <h2>Why This Is Reusable</h2>
+        <p class="muted">Same schema, same renderer, same navigation. Only the disease config, fetched data, and optional branding need to change.</p>
+        <p><code class="inline">config.yaml</code> drives disease identity, search queries, targets, resources, model settings, and deployment links.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <div class="eyebrow">Recent Papers</div>
+        <h2>What the Fetcher Found</h2>
+        <ul class="clean">
+          {% for paper in top_papers %}
+          <li>
+            <div class="paper-title"><a href="{{ paper.url }}">{{ paper.title }}</a></div>
+            <div class="meta">{{ paper.pub_date }} · {{ paper.journal }}</div>
+            <div class="muted">{{ paper.abstract }}</div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="eyebrow">Trials</div>
+      <h2>Active Clinical Trials</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>NCT ID</th>
+              <th>Title</th>
+              <th>Status</th>
+              <th>Sponsor</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for trial in top_trials %}
+            <tr>
+              <td><a href="{{ trial.url }}">{{ trial.nct_id }}</a></td>
+              <td>{{ trial.title }}</td>
+              <td>{{ trial.status }}</td>
+              <td>{{ trial.sponsor }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
