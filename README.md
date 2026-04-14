@@ -45,7 +45,10 @@ M1 foundation in this repo includes:
 - `config_loader.py` with defaults and validation
 - `src/data_fetcher.py` reading disease-specific values from config
 - `src/llm.py` with provider support for `ollama`, `openai`, `anthropic`, and `nim`
+- `src/build_site.py` rendering a config-driven homepage from the same data schema
+- `src/autoresearch.py` for bounded local hypothesis memos over fetched evidence
 - `examples/configs/huntington.yaml` as the HD reference config
+- `examples/configs/parkinson.yaml` as a second-disease starter config
 
 ## Quick Start
 
@@ -65,6 +68,30 @@ cp examples/configs/huntington.yaml config.yaml
 
 ```bash
 python3 src/data_fetcher.py
+```
+
+4. Render the homepage:
+
+```bash
+python3 src/build_site.py
+```
+
+5. Try a different disease config:
+
+```bash
+BRH_CONFIG=examples/configs/parkinson.yaml python3 src/build_site.py --output parkinson.html
+```
+
+6. Run one bounded local autoresearch pass:
+
+```bash
+python3 src/autoresearch.py --preset 1
+```
+
+Or ask a custom question:
+
+```bash
+python3 src/autoresearch.py --question "Which mechanisms in recent evidence look strongest for disease-modifying intervention?"
 ```
 
 ## Config Contract
