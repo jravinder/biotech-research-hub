@@ -43,6 +43,21 @@ def load_data():
         return json.load(f)
 
 
+def ensure_matching_disease(config, data):
+    """Prevent rendering cached data under the wrong disease config."""
+    data_disease = (data.get("disease") or "").strip()
+    config_disease = (config.get("disease", {}).get("name") or "").strip()
+
+    if not data_disease or not config_disease:
+        return
+
+    if data_disease != config_disease:
+        raise ValueError(
+            f"Fetched data is for '{data_disease}' but active config is '{config_disease}'. "
+            "Run src/data_fetcher.py again for the selected disease before rendering."
+        )
+
+
 def format_timestamp(iso_string):
     """Render ISO timestamps into a simple readable string."""
     if not iso_string:
@@ -88,6 +103,7 @@ def main():
 
     config = load_config(args.config)
     data = load_data()
+    ensure_matching_disease(config, data)
     html = build_page(config, data)
 
     output_path = Path(args.output)

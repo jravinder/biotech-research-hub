@@ -65,6 +65,21 @@ def load_data():
         return json.load(f)
 
 
+def ensure_matching_disease(data):
+    """Prevent analysis against cached data from a different disease."""
+    data_disease = (data.get("disease") or "").strip()
+    config_disease = (config.get("disease", {}).get("name") or "").strip()
+
+    if not data_disease or not config_disease:
+        return
+
+    if data_disease != config_disease:
+        raise ValueError(
+            f"Fetched data is for '{data_disease}' but active config is '{config_disease}'. "
+            "Run src/data_fetcher.py again for the selected disease before autoresearch."
+        )
+
+
 def tokenize(text):
     return set(re.findall(r"[a-z0-9][a-z0-9\-']+", (text or "").lower()))
 
@@ -212,6 +227,7 @@ def render_markdown(result, evidence_lookup):
 
 def run_autoresearch(question):
     data = load_data()
+    ensure_matching_disease(data)
     evidence_bundle = build_evidence_bundle(data, question)
     evidence_lookup = {item["id"]: item for item in evidence_bundle}
 
