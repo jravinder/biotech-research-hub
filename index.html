@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HD Research Hub</title>
+  <meta name="description" content="A hereditary neurodegenerative disorder caused by CAG repeat expansion in the HTT gene">
+  <style>
+    :root {
+      --primary: #F59E0B;
+      --primary-dark: #D97706;
+      --secondary: #92400E;
+      --accent: #FB7185;
+      --surface: #FFFBEB;
+      --background: #fdf9e9;
+      --text: #1c1c13;
+      --border: rgba(28, 28, 19, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: linear-gradient(180deg, var(--surface), var(--background));
+      color: var(--text);
+      line-height: 1.5;
+    }
+    a { color: var(--primary-dark); }
+    .shell { max-width: 1120px; margin: 0 auto; padding: 24px; }
+    .nav, .card, .hero, .table-wrap { background: rgba(255, 255, 255, 0.72); backdrop-filter: blur(10px); }
+    .nav {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .hero {
+      margin-top: 18px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 40px 28px;
+      background-image:
+        radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 22%, transparent), transparent 35%),
+        radial-gradient(circle at left center, color-mix(in srgb, var(--primary) 20%, transparent), transparent 30%);
+    }
+    .eyebrow { text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px; color: var(--secondary); font-weight: 700; }
+    h1, h2, h3 { margin: 0 0 12px; line-height: 1.05; }
+    h1 { font-size: clamp(2.8rem, 7vw, 5.4rem); max-width: 12ch; }
+    h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); }
+    .lede { font-size: 1.1rem; max-width: 64ch; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-secondary { border-color: var(--border); color: var(--text); background: rgba(255,255,255,0.55); }
+    .grid { display: grid; gap: 18px; }
+    .grid-4 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .section { margin-top: 28px; }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+    .stat { font-size: 2rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 4px; }
+    .muted { color: rgba(28,28,19,0.7); }
+    ul.clean { list-style: none; padding: 0; margin: 0; }
+    ul.clean li + li { margin-top: 14px; }
+    .paper-title, .org-name, .target-name { font-weight: 700; }
+    .meta { font-size: 0.9rem; color: rgba(28,28,19,0.65); }
+    .table-wrap {
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--secondary); background: rgba(255,255,255,0.5); }
+    tr:last-child td { border-bottom: none; }
+    code.inline { background: rgba(255,255,255,0.75); padding: 2px 6px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="nav">
+      <div>
+        <div class="eyebrow">Biotech Research Hub Template</div>
+        <div><strong>HD Research Hub</strong></div>
+      </div>
+      <div class="meta">Disease config: HD | Updated April 16, 2026 at 12:07 AM</div>
+    </div>
+
+    <section class="hero">
+      <div class="eyebrow">Config-Driven Workspace</div>
+      <h1>Huntington's Disease Research, Explained</h1>
+      <p class="lede">A hereditary neurodegenerative disorder caused by CAG repeat expansion in the HTT gene This workspace is generated from one config file and the same code can be reused for a different disease without rebuilding the product surface.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://hd-research-agent.vercel.app">Open Live Site</a>
+        <a class="btn btn-secondary" href="https://github.com/jravinder/hd-research-agent">View Source</a>
+      </div>
+    </section>
+
+    <section class="section grid grid-4">
+      <div class="card">
+        <div class="stat">20</div>
+        <div>Recent papers</div>
+      </div>
+      <div class="card">
+        <div class="stat">30</div>
+        <div>Active trials</div>
+      </div>
+      <div class="card">
+        <div class="stat">23</div>
+        <div>Recruiting now</div>
+      </div>
+      <div class="card">
+        <div class="stat">6</div>
+        <div>Tracked targets</div>
+      </div>
+    </section>
+
+    <section class="section grid grid-3">
+      <div class="card">
+        <div class="eyebrow">Learn</div>
+        <h2>Start With the Field Map</h2>
+        <p class="muted">Use Gemma to explain the disease in plain language, summarize what matters, and help someone move from curious to useful faster.</p>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Track</div>
+        <h2>Watch the Evidence</h2>
+        <p class="muted">The same pipeline gathers papers, trials, and community updates into a consistent structure that can be searched, summarized, and rendered.</p>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Fork</div>
+        <h2>Launch Your Own Flavor</h2>
+        <p class="muted">Advanced users can swap the config, bring their own feeds and targets, and stand up a disease-specific workspace on local or hosted infrastructure.</p>
+      </div>
+    </section>
+
+    <section class="section grid grid-3">
+      <div class="card">
+        <div class="eyebrow">Support Orgs</div>
+        <h2>Who Can Help</h2>
+        <ul class="clean">
+          <li>
+            <div class="org-name"><a href="https://hdsa.org">HDSA</a></div>
+            <div class="muted">Social workers, support groups, HD specialists</div>
+          </li>
+          <li>
+            <div class="org-name"><a href="https://en.hdbuzz.net">HDBuzz</a></div>
+            <div class="muted">Scientists explain HD research in plain language</div>
+          </li>
+          <li>
+            <div class="org-name"><a href="https://www.hdyo.org">HDYO</a></div>
+            <div class="muted">HD Youth Organization, resources for young people</div>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Tracked Targets</div>
+        <h2>Configured Target Set</h2>
+        <ul class="clean">
+          <li>
+            <div class="target-name">MSH3 · MutS Homolog 3</div>
+            <div class="muted">Part of MutSbeta complex. Recognizes CAG repeat loops. Rate-limiting: 50% reduction = 50% less expansion.</div>
+          </li>
+          <li>
+            <div class="target-name">FAN1 · Fanconi Anemia-Associated Nuclease 1</div>
+            <div class="muted">Protective nuclease that opposes somatic expansion. Strongest genetic association to delayed onset.</div>
+          </li>
+          <li>
+            <div class="target-name">PMS1 · Post-Meiotic Segregation 1</div>
+            <div class="muted">MutL family member. Splice modulators can reduce PMS1, suppressing expansion while preserving cancer-protective MMR.</div>
+          </li>
+          <li>
+            <div class="target-name">MLH1 · MutL Homolog 1</div>
+            <div class="muted">Forms MutLgamma endonuclease with MLH3. Nicks DNA opposite CAG loops, enabling expansion.</div>
+          </li>
+          <li>
+            <div class="target-name">LIG1 · DNA Ligase 1</div>
+            <div class="muted">Seals nicks during repair, locking in expansion. K845N variant delays onset by 7-8 years.</div>
+          </li>
+          <li>
+            <div class="target-name">HTT · Huntingtin</div>
+            <div class="muted">The primary disease gene. CAG expansion produces toxic mutant huntingtin protein.</div>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Template Contract</div>
+        <h2>Why This Is Reusable</h2>
+        <p class="muted">Same schema, same renderer, same navigation. Only the disease config, fetched data, and optional branding need to change.</p>
+        <p><code class="inline">config.yaml</code> drives disease identity, search queries, targets, resources, model settings, and deployment links.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <div class="eyebrow">Recent Papers</div>
+        <h2>What the Fetcher Found</h2>
+        <ul class="clean">
+          <li>
+            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41557250/">Dysregulation of store-operated calcium entry in fibroblast lines from adult and juvenile-onset Huntington's disease patients.</a></div>
+            <div class="meta">2026 Apr · Pharmacological reports : PR</div>
+            <div class="muted">The pathology of Huntington's disease (HD) is marked by the aggregation of mutant huntingtin protein (mHTT), which results from expanded polyglutamine (polyQ) residues encoded by CAG repeats in the HTT gene. These repeats are differentially elongated in adult- and juvenile-onset HD. In striatal neurons, the mHTT disrupts cellular mechanisms such as store-operated calcium entry (SOCE), a process in which endoplasmic reticulum Ca²⁺ depletion triggers extracellular Ca²⁺ influx; however, this proces</div>
+          </li>
+          <li>
+            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41849583/">Lowering the HTT1a transcript as an effective therapy for Huntington's disease in a knockin mouse model.</a></div>
+            <div class="meta">2026 Mar · Science translational medicine</div>
+            <div class="muted">Lowering huntingtin (HTT) transcript levels has been a major focus of therapeutic development for Huntington's disease (HD), but which transcript should be lowered? HD is caused by a CAG repeat expansion in exon 1 of the HTT gene, and the rate of somatic expansion of this CAG repeat throughout life drives the age of onset and rate of disease progression. As the CAG repeat expands, the extent to which the HTT mRNA is alternatively processed to generate the HTT1a transcript and highly aggregation-</div>
+          </li>
+          <li>
+            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41849580/">Selective targeting of mutant huntingtin intron 1 improves rescue provided by antisense oligonucleotides in Huntington's disease mice.</a></div>
+            <div class="meta">2026 Mar · Science translational medicine</div>
+            <div class="muted">Huntington's disease (HD) arises from the toxic gain of function caused by a CAG expansion in the coding region of the huntingtin (HTT) gene. HD is increasingly appreciated to emerge from multiple pathogenic processes, including somatic instability in mutant HTT's (mHTT) CAG repeat tract, which leads to diverse deleterious consequences. These include the alternative processing of HTT pre-mRNA to generate the HTT1a transcript that encodes the very toxic mHTT isoform referred to as HTT1a. We set o</div>
+          </li>
+          <li>
+            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41967079/">Stem cells enhance mitochondrial function in experimental Huntington's disease.</a></div>
+            <div class="meta">2026 Apr · Stem cells (Dayton, Ohio)</div>
+            <div class="muted">Huntington's Disease (HD) is a neurodegenerative disorder caused by CAG triplet expansion in the HTT gene, producing a mutant Huntingtin protein that impairs mitochondrial dynamics by reducing fusion and increasing fission. Mesenchymal stem cells (MSCs) have shown potential therapeutic effects by sharing functional mitochondria and other secretomes. In this study, quinolinic acid-lesioned neuro-2a (QA-N2a) cells and glutamatergic neurons with 50 CAG repeats (HD neurons) were co-cultured with hum</div>
+          </li>
+          <li>
+            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41846052/">Human iPSC-derived exosomes for amelioration of Huntington's disease through mitochondrial, synaptic, and anti-apoptotic mechanisms.</a></div>
+            <div class="meta">2026 Apr · Biomedicine & pharmacotherapy = Biomedecine & pharmacotherapie</div>
+            <div class="muted">Huntington's disease (HD) is driven by expanded CAG repeats in the huntingtin gene, resulting in mutant huntingtin (mHtt) aggregation, mitochondrial dysfunction, neuronal loss, and neuroinflammation. Although stem cell-based therapies provide potent regenerative, anti-inflammatory, and neuroprotective effects, their clinical translation remains constrained by tumorigenicity and poor engraftment efficiency. Therefore, we investigated whether exosomes derived from human induced pluripotent stem ce</div>
+          </li>
+          <li>
+            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41841481/">Challenges facing genetic diagnostics of Huntington's disease: an update.</a></div>
+            <div class="meta">2026 Mar · Expert review of molecular diagnostics</div>
+            <div class="muted">Since 1993, when a polymorphic CAG trinucleotide repeat was established as the cause of Huntington's disease (HD), fragment analysis has been the first-tier test in genetic diagnosis of HD. However, in recent years it has become increasingly clear that, in addition to the repeat length itself, sequence variations within the HTT repeat and elsewhere in the genome also play a crucial role in the onset and clinical presentation of the disease. Sequence interruptions or non-canonical repeat motifs h</div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="eyebrow">Trials</div>
+      <h2>Active Clinical Trials</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>NCT ID</th>
+              <th>Title</th>
+              <th>Status</th>
+              <th>Sponsor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="https://clinicaltrials.gov/study/NCT06828471">NCT06828471</a></td>
+              <td>Social Cognition Training in Individuals With Huntington's Disease</td>
+              <td>RECRUITING</td>
+              <td>Rush University Medical Center</td>
+            </tr>
+            <tr>
+              <td><a href="https://clinicaltrials.gov/study/NCT06807892">NCT06807892</a></td>
+              <td>Comparison of Two Cognitive-Motor Rehabilitation Approaches Via Exergames: a Study of Cognitive, Motor and Behavioral Functions in Huntington's Disease Patients</td>
+              <td>RECRUITING</td>
+              <td>University Hospital, Angers</td>
+            </tr>
+            <tr>
+              <td><a href="https://clinicaltrials.gov/study/NCT06876857">NCT06876857</a></td>
+              <td>University of Central Florida CereBank</td>
+              <td>RECRUITING</td>
+              <td>University of Central Florida</td>
+            </tr>
+            <tr>
+              <td><a href="https://clinicaltrials.gov/study/NCT06475898">NCT06475898</a></td>
+              <td>Longitudinal Endpoint Assessment of Disease Burden in HD</td>
+              <td>RECRUITING</td>
+              <td>Huntington Study Group</td>
+            </tr>
+            <tr>
+              <td><a href="https://clinicaltrials.gov/study/NCT02855476">NCT02855476</a></td>
+              <td>HDClarity: a Multi-site Cerebrospinal Fluid Collection Initiative to Facilitate Therapeutic Development for Huntington's Disease</td>
+              <td>RECRUITING</td>
+              <td>University College, London</td>
+            </tr>
+            <tr>
+              <td><a href="https://clinicaltrials.gov/study/NCT05243017">NCT05243017</a></td>
+              <td>Safety and Efficacy of AMT-130 in European Adults With Early Manifest Huntington's Disease</td>
+              <td>ACTIVE_NOT_RECRUITING</td>
+              <td>UniQure Biopharma B.V.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
