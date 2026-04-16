@@ -114,8 +114,8 @@ repurposing:
 
 community_news:
   rss_feeds:
-    - name: "Parkinson's Foundation"
-      url: "https://www.parkinson.org/blog/rss.xml"
+    - name: "ScienceDaily Parkinson's News"
+      url: "https://www.sciencedaily.com/rss/health_medicine/parkinsons_disease.xml"
 
 llm:
   provider: "ollama"
