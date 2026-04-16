@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PD Research Hub</title>
+  <meta name="description" content="A progressive neurodegenerative disorder affecting movement, cognition, and autonomic function.">
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-dark: #115e59;
+      --secondary: #164e63;
+      --accent: #14b8a6;
+      --surface: #ecfeff;
+      --background: #f0fdfa;
+      --text: #102a2a;
+      --border: rgba(28, 28, 19, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: linear-gradient(180deg, var(--surface), var(--background));
+      color: var(--text);
+      line-height: 1.5;
+    }
+    a { color: var(--primary-dark); }
+    .shell { max-width: 1120px; margin: 0 auto; padding: 24px; }
+    .nav, .card, .hero, .table-wrap { background: rgba(255, 255, 255, 0.72); backdrop-filter: blur(10px); }
+    .nav {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .hero {
+      margin-top: 18px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 40px 28px;
+      background-image:
+        radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 22%, transparent), transparent 35%),
+        radial-gradient(circle at left center, color-mix(in srgb, var(--primary) 20%, transparent), transparent 30%);
+    }
+    .eyebrow { text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px; color: var(--secondary); font-weight: 700; }
+    h1, h2, h3 { margin: 0 0 12px; line-height: 1.05; }
+    h1 { font-size: clamp(2.8rem, 7vw, 5.4rem); max-width: 12ch; }
+    h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); }
+    .lede { font-size: 1.1rem; max-width: 64ch; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-secondary { border-color: var(--border); color: var(--text); background: rgba(255,255,255,0.55); }
+    .grid { display: grid; gap: 18px; }
+    .grid-4 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .section { margin-top: 28px; }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+    .stat { font-size: 2rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 4px; }
+    .muted { color: rgba(28,28,19,0.7); }
+    ul.clean { list-style: none; padding: 0; margin: 0; }
+    ul.clean li + li { margin-top: 14px; }
+    .paper-title, .org-name, .target-name { font-weight: 700; }
+    .meta { font-size: 0.9rem; color: rgba(28,28,19,0.65); }
+    .table-wrap {
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--secondary); background: rgba(255,255,255,0.5); }
+    tr:last-child td { border-bottom: none; }
+    code.inline { background: rgba(255,255,255,0.75); padding: 2px 6px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="nav">
+      <div>
+        <div class="eyebrow">Biotech Research Hub Template</div>
+        <div><strong>PD Research Hub</strong></div>
+      </div>
+      <div class="meta">Disease config: PD | Updated April 15, 2026 at 11:51 PM</div>
+    </div>
+
+    <section class="hero">
+      <div class="eyebrow">Config-Driven Workspace</div>
+      <h1>Parkinson's Disease Research, Explained</h1>
+      <p class="lede">A progressive neurodegenerative disorder affecting movement, cognition, and autonomic function. This workspace is generated from one config file and the same code can be reused for a different disease without rebuilding the product surface.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#">Open Live Site</a>
+        <a class="btn btn-secondary" href="https://github.com/jravinder/biotech-research-hub">View Source</a>
+      </div>
+    </section>
+
+    <section class="section grid grid-4">
+      <div class="card">
+        <div class="stat">20</div>
+        <div>Recent papers</div>
+      </div>
+      <div class="card">
+        <div class="stat">30</div>
+        <div>Active trials</div>
+      </div>
+      <div class="card">
+        <div class="stat">20</div>
+        <div>Recruiting now</div>
+      </div>
+      <div class="card">
+        <div class="stat">3</div>
+        <div>Tracked targets</div>
+      </div>
+    </section>
+
+    <section class="section grid grid-3">
+      <div class="card">
+        <div class="eyebrow">Learn</div>
+        <h2>Start With the Field Map</h2>
+        <p class="muted">Use Gemma to explain the disease in plain language, summarize what matters, and help someone move from curious to useful faster.</p>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Track</div>
+        <h2>Watch the Evidence</h2>
+        <p class="muted">The same pipeline gathers papers, trials, and community updates into a consistent structure that can be searched, summarized, and rendered.</p>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Fork</div>
+        <h2>Launch Your Own Flavor</h2>
+        <p class="muted">Advanced users can swap the config, bring their own feeds and targets, and stand up a disease-specific workspace on local or hosted infrastructure.</p>
+      </div>
+    </section>
+
+    <section class="section grid grid-3">
+      <div class="card">
+        <div class="eyebrow">Support Orgs</div>
+        <h2>Who Can Help</h2>
+        <ul class="clean">
+          <li>
+            <div class="org-name"><a href="https://www.parkinson.org">Parkinson's Foundation</a></div>
+            <div class="muted">Education, helpline, local chapters, and patient resources.</div>
+          </li>
+          <li>
+            <div class="org-name"><a href="https://www.michaeljfox.org">Michael J. Fox Foundation</a></div>
+            <div class="muted">Research funding, trial matching, and PD science updates.</div>
+          </li>
+          <li>
+            <div class="org-name"><a href="https://davisphinneyfoundation.org">Davis Phinney Foundation</a></div>
+            <div class="muted">Living well with Parkinson's guidance and community support.</div>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Tracked Targets</div>
+        <h2>Configured Target Set</h2>
+        <ul class="clean">
+          <li>
+            <div class="target-name">SNCA · Alpha-synuclein</div>
+            <div class="muted">Core aggregation-prone protein in Parkinson's disease pathology.</div>
+          </li>
+          <li>
+            <div class="target-name">LRRK2 · Leucine-Rich Repeat Kinase 2</div>
+            <div class="muted">A major genetic and signaling target in familial and sporadic Parkinson's disease.</div>
+          </li>
+          <li>
+            <div class="target-name">GBA1 · Glucocerebrosidase</div>
+            <div class="muted">Lysosomal target linked to Parkinson's risk and alpha-synuclein clearance.</div>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Template Contract</div>
+        <h2>Why This Is Reusable</h2>
+        <p class="muted">Same schema, same renderer, same navigation. Only the disease config, fetched data, and optional branding need to change.</p>
+        <p><code class="inline">config.yaml</code> drives disease identity, search queries, targets, resources, model settings, and deployment links.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <div class="eyebrow">Recent Papers</div>
+        <h2>What the Fetcher Found</h2>
+        <ul class="clean">
+          <li>
+            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41842966/">m6A deficiency induces dopaminergic neurodegeneration and progressive parkinsonism through a pathogenic loop with mitochondria.</a></div>
+            <div class="meta">2026 Mar · The Journal of clinical investigation</div>
+            <div class="muted">Despite substantial progress in understanding the molecular pathology of Parkinson's disease (PD), the underlying drivers of PD in many cases remain unknown. Here we investigate the role of RNA modification in PD, following observations of selective m6A hypomethylation in the substantia nigra (SN) of mouse PD models and dysregulated METTL3 and ALKBH5 expression in dopaminergic (DA) neurons from PD patients. We find preferential m6A deposition on transcripts of PD risk genes and a previously unre</div>
+          </li>
+          <li>
+            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41837837/">Gene therapy for Parkinson's disease: current landscape, translational challenges, and future directions.</a></div>
+            <div class="meta">2026 Apr · Expert review of neurotherapeutics</div>
+            <div class="muted">Parkinson's disease (PD) is a progressive neurodegenerative disorder marked by dopaminergic neuronal loss. Gene therapy has emerged as a disease-modifying strategy capable of targeting these mechanisms through dopamine restoration, neurotrophic support, and correction or silencing of pathogenic mutations, which collectively contribute to neuronal vulnerability and α-Synuclein-driven degeneration. Herein, the authors synthesize contemporary viral and non‑viral platforms designed to restore dopami</div>
+          </li>
+          <li>
+            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41483847/">Biochanin A exerts neuroprotective effects in Parkinson's disease both in vivo and in vitro by improving mitochondrial dysfunction through the Sirt1 signaling pathway.</a></div>
+            <div class="meta">2026 Apr · Experimental neurology</div>
+            <div class="muted">The accumulation of reactive oxygen species (ROS) leading to mitochondrial dysfunction is the pathological characteristics underlying the damage to dopaminergic neurons in the substantia nigra (SN) of Parkinson's disease (PD). Therefore, through improving mitochondrial dysfunction may be a potential strategy for PD treatment. Biochanin A (Bioch A), as a natural isoflavone phytoestrogen, has been implicated in studies for its therapeutic potential in neurodegenerative diseases. However, the preci</div>
+          </li>
+          <li>
+            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/40313118/">Brain-derived extracellular vesicles: A promising avenue for Parkinson's disease pathogenesis, diagnosis, and treatment.</a></div>
+            <div class="meta">2026 Apr · Neural regeneration research</div>
+            <div class="muted">The misfolding, aggregation, and deposition of alpha-synuclein into Lewy bodies are pivotal events that trigger pathological changes in Parkinson's disease. Extracellular vesicles are nanosized lipid-bilayer vesicles secreted by cells that play a crucial role in intercellular communication due to their diverse cargo. Among these, brain-derived extracellular vesicles, which are secreted by various brain cells such as neurons, glial cells, and Schwann cells, have garnered increasing attention. The</div>
+          </li>
+          <li>
+            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41949708/">Parkinson's disease: pathogenesis and therapeutic strategies.</a></div>
+            <div class="meta">2026 Apr · Molecular biomedicine</div>
+            <div class="muted">Parkinson's disease (PD) is a neurodegenerative disorder primarily characterized by motor impairments such as bradykinesia, tremor, and rigidity. Its neuropathological hallmarks include the progressive loss of dopaminergic neurons in the substantia nigra pars compacta (SNc) and the aggregation of α-synuclein (α-syn) into Lewy bodies (LBs), which gradually spread to other central nervous system regions and peripheral tissues. The etiology of PD is multifactorial, involving a complex interplay of </div>
+          </li>
+          <li>
+            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41500413/">cGAS-STING activation in Parkinson's Disease: From mechanisms to Disease-Modifying therapeutic strategies.</a></div>
+            <div class="meta">2026 Apr · Gene</div>
+            <div class="muted">Parkinson's disease (PD) is a progressive degenerative neuronal disorder that involves the selective loss of dopaminergic neurons in the substantia nigra, resulting in severe motor and non-motor impairments. Key pathological hallmarks include the accumulation of misfolded α-synuclein and mitochondrial dysfunction. Emerging evidence indicates that innate immune signalling, particularly the cGAS-STING pathway, contributes to PD pathogenesis. It acts as a cytosolic DNA sensor; cGAS can recognise ge</div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="eyebrow">Trials</div>
+      <h2>Active Clinical Trials</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>NCT ID</th>
+              <th>Title</th>
+              <th>Status</th>
+              <th>Sponsor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="https://clinicaltrials.gov/study/NCT06189170">NCT06189170</a></td>
+              <td>Phase I Study to Evaluate KP405 in Healthy and Parkinson's Disease Patients</td>
+              <td>RECRUITING</td>
+              <td>Kariya Pharmaceuticals</td>
+            </tr>
+            <tr>
+              <td><a href="https://clinicaltrials.gov/study/NCT06978920">NCT06978920</a></td>
+              <td>A Trial to Evaluate the Safety, Tolerability and Preliminary Efficacy of NCR201 in the Treatment of Subjects With Parkinson's Disease</td>
+              <td>RECRUITING</td>
+              <td>Nuwacell Biotechnologies Co., Ltd.</td>
+            </tr>
+            <tr>
+              <td><a href="https://clinicaltrials.gov/study/NCT07475741">NCT07475741</a></td>
+              <td>Exergaming for Imrpving Upper Limb Functions in Parkinson's Disease</td>
+              <td>RECRUITING</td>
+              <td>University of Health Sciences Lahore</td>
+            </tr>
+            <tr>
+              <td><a href="https://clinicaltrials.gov/study/NCT05298423">NCT05298423</a></td>
+              <td>Study of Pembrolizumab/Vibostolimab (MK-7684A) in Combination With Concurrent Chemoradiotherapy Followed by Pembrolizumab/Vibostolimab Versus Concurrent Chemoradiotherapy Followed by Durvalumab in Participants With Stage III Non-small Cell Lung Cancer (MK-7684A-006)</td>
+              <td>ACTIVE_NOT_RECRUITING</td>
+              <td>Merck Sharp & Dohme LLC</td>
+            </tr>
+            <tr>
+              <td><a href="https://clinicaltrials.gov/study/NCT06780085">NCT06780085</a></td>
+              <td>A Study of Investigational Agents in Participants With Previously Treated Stage IV Nonsquamous Non-small Cell Lung Cancer (NSCLC) (MK-3475-01H/KEYMAKER-U01)</td>
+              <td>RECRUITING</td>
+              <td>Merck Sharp & Dohme LLC</td>
+            </tr>
+            <tr>
+              <td><a href="https://clinicaltrials.gov/study/NCT06528964">NCT06528964</a></td>
+              <td>Proteinopathies Expression in Skin of Neurodegenerative Disorders</td>
+              <td>RECRUITING</td>
+              <td>Universidad Autonoma de San Luis Potosí</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
