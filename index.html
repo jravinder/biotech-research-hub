@@ -1,304 +1,533 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HD Research Hub</title>
-  <meta name="description" content="A hereditary neurodegenerative disorder caused by CAG repeat expansion in the HTT gene">
-  <style>
-    :root {
-      --primary: #F59E0B;
-      --primary-dark: #D97706;
-      --secondary: #92400E;
-      --accent: #FB7185;
-      --surface: #FFFBEB;
-      --background: #fdf9e9;
-      --text: #1c1c13;
-      --border: rgba(28, 28, 19, 0.12);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      background: linear-gradient(180deg, var(--surface), var(--background));
-      color: var(--text);
-      line-height: 1.5;
-    }
-    a { color: var(--primary-dark); }
-    .shell { max-width: 1120px; margin: 0 auto; padding: 24px; }
-    .nav, .card, .hero, .table-wrap { background: rgba(255, 255, 255, 0.72); backdrop-filter: blur(10px); }
-    .nav {
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      margin-top: 16px;
-    }
-    .hero {
-      margin-top: 18px;
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 40px 28px;
-      background-image:
-        radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 22%, transparent), transparent 35%),
-        radial-gradient(circle at left center, color-mix(in srgb, var(--primary) 20%, transparent), transparent 30%);
-    }
-    .eyebrow { text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px; color: var(--secondary); font-weight: 700; }
-    h1, h2, h3 { margin: 0 0 12px; line-height: 1.05; }
-    h1 { font-size: clamp(2.8rem, 7vw, 5.4rem); max-width: 12ch; }
-    h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); }
-    .lede { font-size: 1.1rem; max-width: 64ch; }
-    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-weight: 700;
-      border: 1px solid transparent;
-    }
-    .btn-primary { background: var(--primary); color: white; }
-    .btn-secondary { border-color: var(--border); color: var(--text); background: rgba(255,255,255,0.55); }
-    .grid { display: grid; gap: 18px; }
-    .grid-4 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-    .section { margin-top: 28px; }
-    .card {
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-    }
-    .stat { font-size: 2rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 4px; }
-    .muted { color: rgba(28,28,19,0.7); }
-    ul.clean { list-style: none; padding: 0; margin: 0; }
-    ul.clean li + li { margin-top: 14px; }
-    .paper-title, .org-name, .target-name { font-weight: 700; }
-    .meta { font-size: 0.9rem; color: rgba(28,28,19,0.65); }
-    .table-wrap {
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      overflow: hidden;
-    }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
-    th { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--secondary); background: rgba(255,255,255,0.5); }
-    tr:last-child td { border-bottom: none; }
-    code.inline { background: rgba(255,255,255,0.75); padding: 2px 6px; border-radius: 6px; }
-  </style>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Biotech Research Studio</title>
+<meta name="description" content="Open-source platform for building AI research workspaces for any disease. Powered by Gemma."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  body { font-family: 'Inter', sans-serif; background: #FAFAFA; }
+  .amber-gradient-text { background: linear-gradient(135deg, #92400E 0%, #D97706 50%, #B45309 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .grid-pattern { background-image: radial-gradient(#e5e7eb 0.5px, transparent 0.5px); background-size: 24px 24px; }
+  .glass-panel { background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.5); box-shadow: 0 8px 32px rgba(0,0,0,0.04); }
+  .terminal-shadow { box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), inset 0 1px 0 0 rgba(255,255,255,0.1); }
+  .premium-shadow { box-shadow: 0 10px 30px -10px rgba(180,83,9,0.08), 0 4px 12px -4px rgba(0,0,0,0.03); }
+  .progress-glow { box-shadow: 0 0 10px rgba(245,158,11,0.4); }
+  .mono-glow { text-shadow: 0 0 10px rgba(245,158,11,0.2); }
+  .code-line-active { background: rgba(180,83,9,0.05); border-left: 2px solid rgba(180,83,9,0.5); margin-left: -2px; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  .cursor-blink { display:inline-block; width:8px; height:1.2em; background:#f59e0b; vertical-align:middle; animation:blink 1s step-end infinite; }
+</style>
 </head>
-<body>
-  <div class="shell">
-    <div class="nav">
-      <div>
-        <div class="eyebrow">Biotech Research Hub Template</div>
-        <div><strong>HD Research Hub</strong></div>
+<body class="antialiased text-[#0A0A0A] selection:bg-amber-100 selection:text-amber-900 overflow-x-hidden">
+
+<div class="fixed inset-0 grid-pattern opacity-40 pointer-events-none z-0"></div>
+
+<!-- Nav -->
+<nav class="fixed top-0 w-full z-[100] bg-[#FAFAFA]/80 backdrop-blur-md border-b border-zinc-200/50">
+  <div class="flex justify-between items-center px-10 h-16 max-w-[1440px] mx-auto">
+    <div class="text-[12px] font-black uppercase tracking-[0.2em]">Biotech Research Studio</div>
+    <div class="hidden md:flex gap-10 items-center">
+      <a href="#pipeline" class="text-zinc-400 text-[11px] font-bold uppercase tracking-widest hover:text-zinc-900 transition-all">How it works</a>
+      <a href="#workspace" class="text-amber-700 text-[11px] font-bold uppercase tracking-widest border-b-2 border-amber-700/50 pb-1">HD Workspace</a>
+      <a href="#configure" class="text-zinc-400 text-[11px] font-bold uppercase tracking-widest hover:text-zinc-900 transition-all">Configure</a>
+    </div>
+    <a href="https://github.com/jravinder/biotech-research-hub" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-amber-700 transition-colors">
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="relative z-10 pt-40 pb-16 px-10 max-w-[1440px] mx-auto">
+  <div class="max-w-5xl">
+    <div class="flex items-center gap-4 mb-10">
+      <div class="h-px w-12 bg-amber-700/30"></div>
+      <span class="text-[12px] font-bold uppercase tracking-[0.4em] text-amber-800/60">Open source // MIT License</span>
+    </div>
+    <h1 class="text-6xl md:text-[90px] font-black tracking-[-0.04em] leading-[0.9] mb-12">
+      You know how to<br/>build software.<br/>Now point it at <span class="amber-gradient-text">a disease.</span>
+    </h1>
+    <div class="flex flex-col md:flex-row gap-12 items-start md:items-center mt-16">
+      <p class="text-[18px] text-[#525252] max-w-lg leading-relaxed font-light">
+        Biotech Research Studio turns PubMed papers into structured data you can query, analyze, and build on. Gemma reads the papers. You ask the questions. Configure it for any disease.
+      </p>
+      <div class="flex gap-5">
+        <a href="https://hd-research-agent.vercel.app" target="_blank" rel="noopener noreferrer" class="bg-[#0A0A0A] text-white px-10 py-5 text-[12px] font-black uppercase tracking-[0.2em] hover:bg-amber-700 transition-colors">See it working (HD)</a>
+        <a href="https://github.com/jravinder/biotech-research-hub" target="_blank" rel="noopener noreferrer" class="border border-zinc-200 text-[#0A0A0A] px-10 py-5 text-[12px] font-black uppercase tracking-[0.2em] hover:bg-zinc-50 transition-colors">View Source</a>
       </div>
-      <div class="meta">Disease config: HD | Updated April 16, 2026 at 12:07 AM</div>
+    </div>
+  </div>
+</section>
+
+<!-- The problem, from a technologist's perspective -->
+<section class="relative z-10 px-10 max-w-[1440px] mx-auto mb-32 mt-20">
+  <div class="max-w-3xl mb-14">
+    <h2 class="text-3xl font-black tracking-tight mb-4">The problem if you're technical</h2>
+    <p class="text-[16px] text-zinc-500 leading-relaxed">You can write code, train models, build pipelines. But biomedical research is a different world. The data is scattered across PubMed, ClinicalTrials.gov, and dozens of organism-specific databases. The papers are dense. The vocabulary is unfamiliar. You don't know what you don't know.</p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-white p-8 premium-shadow">
+      <div class="text-[11px] font-black uppercase tracking-widest text-zinc-400 mb-4">Where do I start?</div>
+      <p class="text-[14px] text-zinc-600 leading-relaxed">PubMed returns 1,200 results. Which 20 matter? Which are reviews vs original research? Which are relevant to drug discovery vs basic biology?</p>
+    </div>
+    <div class="bg-white p-8 premium-shadow">
+      <div class="text-[11px] font-black uppercase tracking-widest text-zinc-400 mb-4">What am I reading?</div>
+      <p class="text-[14px] text-zinc-600 leading-relaxed">A paper mentions MSH3, MutSbeta, somatic CAG expansion. You understand the words individually. Together they mean nothing to you yet.</p>
+    </div>
+    <div class="bg-white p-8 premium-shadow">
+      <div class="text-[11px] font-black uppercase tracking-widest text-zinc-400 mb-4">What can I actually do?</div>
+      <p class="text-[14px] text-zinc-600 leading-relaxed">You want to contribute, not just read. But the gap between "I have a GPU" and "I can screen drug candidates" feels enormous.</p>
+    </div>
+  </div>
+</section>
+
+<!-- What this does, concretely -->
+<section class="relative z-10 px-10 max-w-[1440px] mx-auto mb-32">
+  <div class="max-w-3xl mb-14">
+    <h2 class="text-3xl font-black tracking-tight mb-4">What this tool does</h2>
+    <p class="text-[16px] text-zinc-500 leading-relaxed">Biotech Research Studio is the bridge. It takes your technical skills and applies them to published research. Gemma reads the papers. The platform structures the output. You get data you can work with.</p>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-zinc-200 rounded-xl overflow-hidden">
+    <div class="bg-white p-8">
+      <div class="text-3xl font-black tracking-tight mb-1">75</div>
+      <div class="text-[11px] font-bold text-zinc-400 uppercase tracking-widest mb-2">papers</div>
+      <p class="text-[12px] text-zinc-500">Full text ingested and analyzed. Not abstracts.</p>
+    </div>
+    <div class="bg-white p-8">
+      <div class="text-3xl font-black tracking-tight mb-1">42</div>
+      <div class="text-[11px] font-bold text-zinc-400 uppercase tracking-widest mb-2">drug candidates</div>
+      <p class="text-[12px] text-zinc-500">Extracted by Gemma with target, mechanism, and evidence level.</p>
+    </div>
+    <div class="bg-white p-8">
+      <div class="text-3xl font-black tracking-tight mb-1">5</div>
+      <div class="text-[11px] font-bold text-zinc-400 uppercase tracking-widest mb-2">protein targets</div>
+      <p class="text-[12px] text-zinc-500">Mapped to AlphaFold 3D structures you can inspect.</p>
+    </div>
+    <div class="bg-white p-8">
+      <div class="text-3xl font-black tracking-tight text-amber-700 mb-1">JSON</div>
+      <div class="text-[11px] font-bold text-zinc-400 uppercase tracking-widest mb-2">output</div>
+      <p class="text-[12px] text-zinc-500">Structured data you can query, filter, and build on.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pipeline -->
+<section id="pipeline" class="relative z-10 px-10 max-w-[1440px] mx-auto mb-32">
+  <div class="flex items-end justify-between mb-16">
+    <h2 class="text-4xl font-black tracking-tight">The Research Pipeline</h2>
+    <div class="text-[11px] font-bold text-zinc-400 tracking-[0.2em] uppercase hidden md:block">Runs overnight, every night</div>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 relative">
+    <div class="hidden lg:block absolute top-[25px] left-8 right-8 h-px bg-zinc-200 z-0"></div>
+    <div class="relative z-10 pr-8 pb-12 group">
+      <div class="w-12 h-12 bg-white border-2 border-zinc-200 rounded-full flex items-center justify-center mb-6 group-hover:border-amber-600 group-hover:shadow-lg transition-all duration-300">
+        <div class="w-3 h-3 bg-zinc-300 group-hover:bg-amber-600 rounded-full transition-colors"></div>
+      </div>
+      <div class="text-amber-600 font-black text-xs mb-2 font-mono">01</div>
+      <div class="font-black text-[13px] uppercase tracking-widest mb-3">Discover</div>
+      <p class="text-[12px] text-zinc-500 leading-relaxed">Papers from PubMed. Trials from ClinicalTrials.gov. Daily.</p>
+    </div>
+    <div class="relative z-10 pr-8 pb-12 group">
+      <div class="w-12 h-12 bg-white border-2 border-zinc-200 rounded-full flex items-center justify-center mb-6 group-hover:border-amber-600 group-hover:shadow-lg transition-all duration-300">
+        <div class="w-3 h-3 bg-zinc-300 group-hover:bg-amber-600 rounded-full transition-colors"></div>
+      </div>
+      <div class="text-amber-600 font-black text-xs mb-2 font-mono">02</div>
+      <div class="font-black text-[13px] uppercase tracking-widest mb-3">Read</div>
+      <p class="text-[12px] text-zinc-500 leading-relaxed">Gemma 4 reads full papers. Methods, results, discussion.</p>
+    </div>
+    <div class="relative z-10 pr-8 pb-12 group">
+      <div class="w-12 h-12 bg-white border-2 border-zinc-200 rounded-full flex items-center justify-center mb-6 group-hover:border-amber-600 group-hover:shadow-lg transition-all duration-300">
+        <div class="w-3 h-3 bg-zinc-300 group-hover:bg-amber-600 rounded-full transition-colors"></div>
+      </div>
+      <div class="text-amber-600 font-black text-xs mb-2 font-mono">03</div>
+      <div class="font-black text-[13px] uppercase tracking-widest mb-3">Extract</div>
+      <p class="text-[12px] text-zinc-500 leading-relaxed">Drug candidates, targets, mechanisms. Structured JSON.</p>
+    </div>
+    <div class="relative z-10 pr-8 pb-12 group">
+      <div class="w-12 h-12 bg-white border-2 border-zinc-200 rounded-full flex items-center justify-center mb-6 group-hover:border-amber-600 group-hover:shadow-lg transition-all duration-300">
+        <div class="w-3 h-3 bg-zinc-300 group-hover:bg-amber-600 rounded-full transition-colors"></div>
+      </div>
+      <div class="text-amber-600 font-black text-xs mb-2 font-mono">04</div>
+      <div class="font-black text-[13px] uppercase tracking-widest mb-3">Map</div>
+      <p class="text-[12px] text-zinc-500 leading-relaxed">AlphaFold 3D protein structures for each target.</p>
+    </div>
+    <div class="relative z-10 pr-8 pb-12 group">
+      <div class="w-12 h-12 bg-white border-2 border-zinc-200 rounded-full flex items-center justify-center mb-6 group-hover:border-amber-600 group-hover:shadow-lg transition-all duration-300">
+        <div class="w-3 h-3 bg-zinc-300 group-hover:bg-amber-600 rounded-full transition-colors"></div>
+      </div>
+      <div class="text-amber-600 font-black text-xs mb-2 font-mono">05</div>
+      <div class="font-black text-[13px] uppercase tracking-widest mb-3">Compound</div>
+      <p class="text-[12px] text-zinc-500 leading-relaxed">Knowledge base grows overnight. Wiki compiles itself.</p>
+    </div>
+    <div class="relative z-10 pr-8 pb-12 group">
+      <div class="w-12 h-12 bg-white border-2 border-zinc-200 rounded-full flex items-center justify-center mb-6 group-hover:border-amber-600 group-hover:shadow-lg transition-all duration-300">
+        <div class="w-3 h-3 bg-zinc-300 group-hover:bg-amber-600 rounded-full transition-colors"></div>
+      </div>
+      <div class="text-amber-600 font-black text-xs mb-2 font-mono">06</div>
+      <div class="font-black text-[13px] uppercase tracking-widest mb-3">Chat</div>
+      <p class="text-[12px] text-zinc-500 leading-relaxed">Ask questions, get cited answers. 22 languages.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Gemma at Work: Real inference output -->
+<section id="workspace" class="relative z-10 px-10 max-w-[1440px] mx-auto mb-16">
+  <div class="flex items-end justify-between mb-10">
+    <div>
+      <h2 class="text-4xl font-black tracking-tight">Gemma at Work</h2>
+      <p class="text-zinc-500 mt-2">Real output from Experiment #4. Gemma 4 26B read 63,979 characters of a paper and returned this in under 5 minutes.</p>
+    </div>
+    <div class="text-[11px] font-bold text-zinc-400 tracking-[0.2em] uppercase hidden md:block">Actual model output</div>
+  </div>
+
+  <!-- Prompt + Response -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+    <!-- What we sent -->
+    <div class="terminal-shadow bg-[#0A0A0A] rounded-xl overflow-hidden border border-zinc-800">
+      <div class="bg-[#121212] px-5 py-3 flex items-center justify-between border-b border-zinc-800/50">
+        <div class="text-[10px] font-mono font-bold tracking-[0.15em] text-zinc-500">PROMPT SENT TO GEMMA 4</div>
+        <div class="text-[10px] font-mono text-zinc-700">22 sections, 63,979 chars</div>
+      </div>
+      <div class="p-6 font-mono text-[12px] leading-relaxed text-zinc-400">
+        <div class="text-amber-500/70 mb-3">system:</div>
+        <div class="text-zinc-500 mb-4 pl-4">"You are a senior HD researcher and medicinal chemist. Focus on actionable drug repurposing opportunities."</div>
+        <div class="text-amber-500/70 mb-3">user:</div>
+        <div class="text-zinc-500 pl-4 mb-2">"You are screening this HD research paper for drug candidates that target somatic CAG repeat expansion.</div>
+        <div class="text-zinc-600 pl-4 mb-2">The 5 validated targets: MSH3, FAN1, PMS1, MLH1, LIG1</div>
+        <div class="text-zinc-600 pl-4 mb-4">FULL PAPER TEXT: [63,979 characters]</div>
+        <div class="text-zinc-500 pl-4">Analyze this paper. Return JSON."</div>
+      </div>
     </div>
 
-    <section class="hero">
-      <div class="eyebrow">Config-Driven Workspace</div>
-      <h1>Huntington's Disease Research, Explained</h1>
-      <p class="lede">A hereditary neurodegenerative disorder caused by CAG repeat expansion in the HTT gene This workspace is generated from one config file and the same code can be reused for a different disease without rebuilding the product surface.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="https://hd-research-agent.vercel.app">Open Live Site</a>
-        <a class="btn btn-secondary" href="https://github.com/jravinder/hd-research-agent">View Source</a>
+    <!-- What Gemma returned -->
+    <div class="terminal-shadow bg-[#0A0A0A] rounded-xl overflow-hidden border border-zinc-800">
+      <div class="bg-[#121212] px-5 py-3 flex items-center justify-between border-b border-zinc-800/50">
+        <div class="flex items-center gap-3">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+          <div class="text-[10px] font-mono font-bold tracking-[0.15em] text-zinc-500">GEMMA 4 RESPONSE</div>
+        </div>
+        <div class="text-[10px] font-mono text-emerald-600">confidence: high</div>
       </div>
-    </section>
-
-    <section class="section grid grid-4">
-      <div class="card">
-        <div class="stat">20</div>
-        <div>Recent papers</div>
+      <div class="p-6 font-mono text-[12px] leading-relaxed">
+        <div class="text-zinc-500 mb-1">{</div>
+        <div class="pl-4 mb-1"><span class="text-amber-400">"main_finding"</span>: <span class="text-emerald-400">"Reducing MSH3 expression in a dose-dependent manner effectively prevents somatic CAG repeat expansions in the CNS of HD mouse models"</span>,</div>
+        <div class="pl-4 mb-1"><span class="text-amber-400">"relevance_score"</span>: <span class="text-zinc-300">10</span>,</div>
+        <div class="pl-4 mb-1"><span class="text-amber-400">"drug_candidates"</span>: [{</div>
+        <div class="pl-8 mb-1"><span class="text-amber-400">"name"</span>: <span class="text-emerald-400">"MSH3 di-siRNA"</span>,</div>
+        <div class="pl-8 mb-1"><span class="text-amber-400">"target"</span>: <span class="text-emerald-400">"MSH3"</span>,</div>
+        <div class="pl-8 mb-1"><span class="text-amber-400">"key_result"</span>: <span class="text-emerald-400">"10 nmol dose reduced striatal SEI by 78.1%"</span>,</div>
+        <div class="pl-8"><span class="text-amber-400">"evidence_level"</span>: <span class="text-emerald-400">"animal_model"</span></div>
+        <div class="pl-4">}]</div>
+        <div class="text-zinc-500">}</div>
       </div>
-      <div class="card">
-        <div class="stat">30</div>
-        <div>Active trials</div>
-      </div>
-      <div class="card">
-        <div class="stat">23</div>
-        <div>Recruiting now</div>
-      </div>
-      <div class="card">
-        <div class="stat">6</div>
-        <div>Tracked targets</div>
-      </div>
-    </section>
-
-    <section class="section grid grid-3">
-      <div class="card">
-        <div class="eyebrow">Learn</div>
-        <h2>Start With the Field Map</h2>
-        <p class="muted">Use Gemma to explain the disease in plain language, summarize what matters, and help someone move from curious to useful faster.</p>
-      </div>
-      <div class="card">
-        <div class="eyebrow">Track</div>
-        <h2>Watch the Evidence</h2>
-        <p class="muted">The same pipeline gathers papers, trials, and community updates into a consistent structure that can be searched, summarized, and rendered.</p>
-      </div>
-      <div class="card">
-        <div class="eyebrow">Fork</div>
-        <h2>Launch Your Own Flavor</h2>
-        <p class="muted">Advanced users can swap the config, bring their own feeds and targets, and stand up a disease-specific workspace on local or hosted infrastructure.</p>
-      </div>
-    </section>
-
-    <section class="section grid grid-3">
-      <div class="card">
-        <div class="eyebrow">Support Orgs</div>
-        <h2>Who Can Help</h2>
-        <ul class="clean">
-          <li>
-            <div class="org-name"><a href="https://hdsa.org">HDSA</a></div>
-            <div class="muted">Social workers, support groups, HD specialists</div>
-          </li>
-          <li>
-            <div class="org-name"><a href="https://en.hdbuzz.net">HDBuzz</a></div>
-            <div class="muted">Scientists explain HD research in plain language</div>
-          </li>
-          <li>
-            <div class="org-name"><a href="https://www.hdyo.org">HDYO</a></div>
-            <div class="muted">HD Youth Organization, resources for young people</div>
-          </li>
-        </ul>
-      </div>
-      <div class="card">
-        <div class="eyebrow">Tracked Targets</div>
-        <h2>Configured Target Set</h2>
-        <ul class="clean">
-          <li>
-            <div class="target-name">MSH3 · MutS Homolog 3</div>
-            <div class="muted">Part of MutSbeta complex. Recognizes CAG repeat loops. Rate-limiting: 50% reduction = 50% less expansion.</div>
-          </li>
-          <li>
-            <div class="target-name">FAN1 · Fanconi Anemia-Associated Nuclease 1</div>
-            <div class="muted">Protective nuclease that opposes somatic expansion. Strongest genetic association to delayed onset.</div>
-          </li>
-          <li>
-            <div class="target-name">PMS1 · Post-Meiotic Segregation 1</div>
-            <div class="muted">MutL family member. Splice modulators can reduce PMS1, suppressing expansion while preserving cancer-protective MMR.</div>
-          </li>
-          <li>
-            <div class="target-name">MLH1 · MutL Homolog 1</div>
-            <div class="muted">Forms MutLgamma endonuclease with MLH3. Nicks DNA opposite CAG loops, enabling expansion.</div>
-          </li>
-          <li>
-            <div class="target-name">LIG1 · DNA Ligase 1</div>
-            <div class="muted">Seals nicks during repair, locking in expansion. K845N variant delays onset by 7-8 years.</div>
-          </li>
-          <li>
-            <div class="target-name">HTT · Huntingtin</div>
-            <div class="muted">The primary disease gene. CAG expansion produces toxic mutant huntingtin protein.</div>
-          </li>
-        </ul>
-      </div>
-      <div class="card">
-        <div class="eyebrow">Template Contract</div>
-        <h2>Why This Is Reusable</h2>
-        <p class="muted">Same schema, same renderer, same navigation. Only the disease config, fetched data, and optional branding need to change.</p>
-        <p><code class="inline">config.yaml</code> drives disease identity, search queries, targets, resources, model settings, and deployment links.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="card">
-        <div class="eyebrow">Recent Papers</div>
-        <h2>What the Fetcher Found</h2>
-        <ul class="clean">
-          <li>
-            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41557250/">Dysregulation of store-operated calcium entry in fibroblast lines from adult and juvenile-onset Huntington's disease patients.</a></div>
-            <div class="meta">2026 Apr · Pharmacological reports : PR</div>
-            <div class="muted">The pathology of Huntington's disease (HD) is marked by the aggregation of mutant huntingtin protein (mHTT), which results from expanded polyglutamine (polyQ) residues encoded by CAG repeats in the HTT gene. These repeats are differentially elongated in adult- and juvenile-onset HD. In striatal neurons, the mHTT disrupts cellular mechanisms such as store-operated calcium entry (SOCE), a process in which endoplasmic reticulum Ca²⁺ depletion triggers extracellular Ca²⁺ influx; however, this proces</div>
-          </li>
-          <li>
-            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41849583/">Lowering the HTT1a transcript as an effective therapy for Huntington's disease in a knockin mouse model.</a></div>
-            <div class="meta">2026 Mar · Science translational medicine</div>
-            <div class="muted">Lowering huntingtin (HTT) transcript levels has been a major focus of therapeutic development for Huntington's disease (HD), but which transcript should be lowered? HD is caused by a CAG repeat expansion in exon 1 of the HTT gene, and the rate of somatic expansion of this CAG repeat throughout life drives the age of onset and rate of disease progression. As the CAG repeat expands, the extent to which the HTT mRNA is alternatively processed to generate the HTT1a transcript and highly aggregation-</div>
-          </li>
-          <li>
-            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41849580/">Selective targeting of mutant huntingtin intron 1 improves rescue provided by antisense oligonucleotides in Huntington's disease mice.</a></div>
-            <div class="meta">2026 Mar · Science translational medicine</div>
-            <div class="muted">Huntington's disease (HD) arises from the toxic gain of function caused by a CAG expansion in the coding region of the huntingtin (HTT) gene. HD is increasingly appreciated to emerge from multiple pathogenic processes, including somatic instability in mutant HTT's (mHTT) CAG repeat tract, which leads to diverse deleterious consequences. These include the alternative processing of HTT pre-mRNA to generate the HTT1a transcript that encodes the very toxic mHTT isoform referred to as HTT1a. We set o</div>
-          </li>
-          <li>
-            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41967079/">Stem cells enhance mitochondrial function in experimental Huntington's disease.</a></div>
-            <div class="meta">2026 Apr · Stem cells (Dayton, Ohio)</div>
-            <div class="muted">Huntington's Disease (HD) is a neurodegenerative disorder caused by CAG triplet expansion in the HTT gene, producing a mutant Huntingtin protein that impairs mitochondrial dynamics by reducing fusion and increasing fission. Mesenchymal stem cells (MSCs) have shown potential therapeutic effects by sharing functional mitochondria and other secretomes. In this study, quinolinic acid-lesioned neuro-2a (QA-N2a) cells and glutamatergic neurons with 50 CAG repeats (HD neurons) were co-cultured with hum</div>
-          </li>
-          <li>
-            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41846052/">Human iPSC-derived exosomes for amelioration of Huntington's disease through mitochondrial, synaptic, and anti-apoptotic mechanisms.</a></div>
-            <div class="meta">2026 Apr · Biomedicine & pharmacotherapy = Biomedecine & pharmacotherapie</div>
-            <div class="muted">Huntington's disease (HD) is driven by expanded CAG repeats in the huntingtin gene, resulting in mutant huntingtin (mHtt) aggregation, mitochondrial dysfunction, neuronal loss, and neuroinflammation. Although stem cell-based therapies provide potent regenerative, anti-inflammatory, and neuroprotective effects, their clinical translation remains constrained by tumorigenicity and poor engraftment efficiency. Therefore, we investigated whether exosomes derived from human induced pluripotent stem ce</div>
-          </li>
-          <li>
-            <div class="paper-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41841481/">Challenges facing genetic diagnostics of Huntington's disease: an update.</a></div>
-            <div class="meta">2026 Mar · Expert review of molecular diagnostics</div>
-            <div class="muted">Since 1993, when a polymorphic CAG trinucleotide repeat was established as the cause of Huntington's disease (HD), fragment analysis has been the first-tier test in genetic diagnosis of HD. However, in recent years it has become increasingly clear that, in addition to the repeat length itself, sequence variations within the HTT repeat and elsewhere in the genome also play a crucial role in the onset and clinical presentation of the disease. Sequence interruptions or non-canonical repeat motifs h</div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="eyebrow">Trials</div>
-      <h2>Active Clinical Trials</h2>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>NCT ID</th>
-              <th>Title</th>
-              <th>Status</th>
-              <th>Sponsor</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><a href="https://clinicaltrials.gov/study/NCT06828471">NCT06828471</a></td>
-              <td>Social Cognition Training in Individuals With Huntington's Disease</td>
-              <td>RECRUITING</td>
-              <td>Rush University Medical Center</td>
-            </tr>
-            <tr>
-              <td><a href="https://clinicaltrials.gov/study/NCT06807892">NCT06807892</a></td>
-              <td>Comparison of Two Cognitive-Motor Rehabilitation Approaches Via Exergames: a Study of Cognitive, Motor and Behavioral Functions in Huntington's Disease Patients</td>
-              <td>RECRUITING</td>
-              <td>University Hospital, Angers</td>
-            </tr>
-            <tr>
-              <td><a href="https://clinicaltrials.gov/study/NCT06876857">NCT06876857</a></td>
-              <td>University of Central Florida CereBank</td>
-              <td>RECRUITING</td>
-              <td>University of Central Florida</td>
-            </tr>
-            <tr>
-              <td><a href="https://clinicaltrials.gov/study/NCT06475898">NCT06475898</a></td>
-              <td>Longitudinal Endpoint Assessment of Disease Burden in HD</td>
-              <td>RECRUITING</td>
-              <td>Huntington Study Group</td>
-            </tr>
-            <tr>
-              <td><a href="https://clinicaltrials.gov/study/NCT02855476">NCT02855476</a></td>
-              <td>HDClarity: a Multi-site Cerebrospinal Fluid Collection Initiative to Facilitate Therapeutic Development for Huntington's Disease</td>
-              <td>RECRUITING</td>
-              <td>University College, London</td>
-            </tr>
-            <tr>
-              <td><a href="https://clinicaltrials.gov/study/NCT05243017">NCT05243017</a></td>
-              <td>Safety and Efficacy of AMT-130 in European Adults With Early Manifest Huntington's Disease</td>
-              <td>ACTIVE_NOT_RECRUITING</td>
-              <td>UniQure Biopharma B.V.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+    </div>
   </div>
-</body>
-</html>
+
+  <!-- Scale callout -->
+  <div class="bg-zinc-100 border border-zinc-200 rounded-lg p-6 flex flex-wrap items-center justify-between gap-4">
+    <p class="text-[14px] text-zinc-600 font-medium">Gemma 4 did this <strong class="text-zinc-900">75 times</strong> across 75 papers. 4,976,515 characters total. Found <strong class="text-zinc-900">42 drug candidates</strong> across 5 validated protein targets. On a Mac M2. Cost: $0.</p>
+    <a href="https://hd-research-agent.vercel.app/experiment-4.html" target="_blank" rel="noopener noreferrer" class="text-[12px] font-black uppercase tracking-[0.15em] text-amber-700 flex items-center gap-2 hover:gap-3 transition-all shrink-0">
+      See full results <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+    </a>
+  </div>
+</section>
+
+<!-- Aggregated Results -->
+<section class="relative z-10 px-10 max-w-[1440px] mx-auto mb-32">
+  <div class="terminal-shadow bg-[#0A0A0A] rounded-xl overflow-hidden border border-zinc-800">
+    <div class="bg-[#121212] px-6 py-4 flex items-center justify-between border-b border-zinc-800/50">
+      <div class="flex gap-2">
+        <div class="w-3 h-3 rounded-full bg-rose-500/20 border border-rose-500/40"></div>
+        <div class="w-3 h-3 rounded-full bg-amber-500/20 border border-amber-500/40"></div>
+        <div class="w-3 h-3 rounded-full bg-emerald-500/20 border border-emerald-500/40"></div>
+      </div>
+      <div class="text-[10px] font-mono font-medium tracking-[0.2em] text-zinc-500 flex items-center gap-4">
+        <span class="inline-block w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+        CROSS-PAPER SYNTHESIS // 75 papers aggregated
+      </div>
+      <div class="text-[10px] font-mono text-zinc-600">gemma4:26b via ollama</div>
+    </div>
+    <div class="p-10">
+      <table class="w-full text-left font-mono border-separate border-spacing-y-4">
+        <thead>
+          <tr class="text-[10px] text-zinc-600 tracking-widest uppercase">
+            <th class="pb-6 font-semibold">Target</th>
+            <th class="pb-6 font-semibold">Confidence</th>
+            <th class="pb-6 font-semibold">Druggability</th>
+            <th class="pb-6 font-semibold">Top drug candidate</th>
+            <th class="pb-6 font-semibold text-right">Evidence</th>
+          </tr>
+        </thead>
+        <tbody class="text-[13px]">
+          <tr class="group hover:bg-zinc-900/40 transition-colors">
+            <td class="py-4 text-zinc-200 font-bold border-b border-zinc-900">MSH3</td>
+            <td class="py-4 border-b border-zinc-900">
+              <div class="flex items-center gap-4">
+                <span class="text-amber-500 mono-glow w-8">90</span>
+                <div class="flex-1 max-w-[120px] h-[3px] bg-zinc-800 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-amber-600 to-amber-400 w-[90%] progress-glow"></div></div>
+              </div>
+            </td>
+            <td class="py-4 text-[11px] border-b border-zinc-900"><span class="px-2 py-1 bg-amber-500/10 text-amber-500 font-bold tracking-widest border border-amber-500/20">HIGH</span></td>
+            <td class="py-4 border-b border-zinc-900 text-zinc-400">di-siRNA (78% expansion reduction)</td>
+            <td class="py-4 text-right border-b border-zinc-900 text-zinc-500 text-[11px]">animal model</td>
+          </tr>
+          <tr class="group hover:bg-zinc-900/40 transition-colors">
+            <td class="py-4 text-zinc-200 font-bold border-b border-zinc-900">PMS1</td>
+            <td class="py-4 border-b border-zinc-900">
+              <div class="flex items-center gap-4">
+                <span class="text-amber-500/80 w-8">85</span>
+                <div class="flex-1 max-w-[120px] h-[3px] bg-zinc-800 rounded-full overflow-hidden"><div class="h-full bg-gradient-to-r from-amber-600 to-amber-400 w-[85%]"></div></div>
+              </div>
+            </td>
+            <td class="py-4 text-[11px] border-b border-zinc-900"><span class="px-2 py-1 bg-amber-500/10 text-amber-500 font-bold tracking-widest border border-amber-500/20">HIGH</span></td>
+            <td class="py-4 border-b border-zinc-900 text-zinc-400">branaplam (splice modulator)</td>
+            <td class="py-4 text-right border-b border-zinc-900 text-zinc-500 text-[11px]">cell model</td>
+          </tr>
+          <tr class="group hover:bg-zinc-900/40 transition-colors">
+            <td class="py-4 text-zinc-300 font-bold border-b border-zinc-900">FAN1</td>
+            <td class="py-4 border-b border-zinc-900">
+              <div class="flex items-center gap-4">
+                <span class="text-zinc-500 w-8">80</span>
+                <div class="flex-1 max-w-[120px] h-[3px] bg-zinc-800 rounded-full overflow-hidden"><div class="h-full bg-zinc-600 w-[80%]"></div></div>
+              </div>
+            </td>
+            <td class="py-4 text-[11px] border-b border-zinc-900 text-zinc-500">MEDIUM</td>
+            <td class="py-4 border-b border-zinc-900 text-zinc-500">miR-124-3p antagomir</td>
+            <td class="py-4 text-right border-b border-zinc-900 text-zinc-600 text-[11px]">cell model</td>
+          </tr>
+          <tr class="group hover:bg-zinc-900/40 transition-colors">
+            <td class="py-4 text-zinc-300 font-bold border-b border-zinc-900">MLH1</td>
+            <td class="py-4 border-b border-zinc-900">
+              <div class="flex items-center gap-4">
+                <span class="text-zinc-500 w-8">70</span>
+                <div class="flex-1 max-w-[120px] h-[3px] bg-zinc-800 rounded-full overflow-hidden"><div class="h-full bg-zinc-600 w-[70%]"></div></div>
+              </div>
+            </td>
+            <td class="py-4 text-[11px] border-b border-zinc-900 text-zinc-600">MEDIUM</td>
+            <td class="py-4 border-b border-zinc-900 text-zinc-500">cyclic peptide inhibitors</td>
+            <td class="py-4 text-right border-b border-zinc-900 text-zinc-600 text-[11px]">preclinical</td>
+          </tr>
+          <tr class="group hover:bg-zinc-900/40 transition-colors">
+            <td class="py-4 text-zinc-500 font-bold">LIG1</td>
+            <td class="py-4">
+              <div class="flex items-center gap-4">
+                <span class="text-zinc-700 w-8">60</span>
+                <div class="flex-1 max-w-[120px] h-[3px] bg-zinc-800 rounded-full overflow-hidden"><div class="h-full bg-zinc-700 w-[60%] opacity-50"></div></div>
+              </div>
+            </td>
+            <td class="py-4 text-[11px] text-zinc-700">EMERGING</td>
+            <td class="py-4 text-zinc-600">ligase fidelity enhancers</td>
+            <td class="py-4 text-right text-zinc-700 text-[11px]">concept</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="mt-6 pt-4 border-t border-zinc-800/50 text-[11px] text-zinc-600">AI-generated hypotheses. Not validated findings. Not medical advice. <a href="https://www.kaggle.com/code" target="_blank" rel="noopener noreferrer" class="text-amber-600 hover:text-amber-400 ml-2">Run it yourself on Kaggle</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- Kaggle -->
+<section class="relative z-10 px-10 max-w-[1440px] mx-auto mb-32">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div class="bg-white border border-zinc-200 rounded-xl p-10 premium-shadow">
+      <div class="flex items-center gap-3 mb-6">
+        <svg class="w-6 h-6 text-[#20BEFF]" viewBox="0 0 24 24" fill="currentColor"><path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.281.18.046.119.02.209-.07.27L12.39 14.7l6.319 8.869c.09.118.113.209.07.29h.046z"/></svg>
+        <span class="text-[12px] font-black uppercase tracking-[0.2em]">Run on Kaggle</span>
+      </div>
+      <h3 class="text-2xl font-black tracking-tight mb-4">Try it yourself. Free GPU.</h3>
+      <p class="text-[14px] text-zinc-500 leading-relaxed mb-6">The full pipeline runs on Kaggle's free T4 GPU. Pick a disease, point it at PubMed, watch Gemma 4 extract drug candidates from real papers.</p>
+      <a href="https://www.kaggle.com/competitions/gemma-4-good-hackathon" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#20BEFF] text-white px-6 py-3 text-[12px] font-black uppercase tracking-[0.15em] rounded-lg hover:bg-[#1aa8e6] transition-colors">
+        Open Kaggle Notebook <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+      </a>
+    </div>
+    <div class="bg-white border border-zinc-200 rounded-xl p-10 premium-shadow">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="material-symbols-outlined text-amber-600 text-2xl">speed</span>
+        <span class="text-[12px] font-black uppercase tracking-[0.2em]">Inference Stats</span>
+      </div>
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <div class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-2">Model</div>
+          <div class="text-lg font-bold font-mono">gemma4:26b</div>
+        </div>
+        <div>
+          <div class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-2">Context window</div>
+          <div class="text-lg font-bold font-mono">65,536 tokens</div>
+        </div>
+        <div>
+          <div class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-2">Runtime</div>
+          <div class="text-lg font-bold font-mono">Ollama (local)</div>
+        </div>
+        <div>
+          <div class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-2">Hardware</div>
+          <div class="text-lg font-bold font-mono">Mac M2, 24GB</div>
+        </div>
+        <div>
+          <div class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-2">Per-paper time</div>
+          <div class="text-lg font-bold font-mono">~4 min</div>
+        </div>
+        <div>
+          <div class="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-2">Total cost</div>
+          <div class="text-lg font-bold font-mono text-amber-700">$0.00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Configure -->
+<section id="configure" class="relative z-10 px-10 max-w-[1440px] mx-auto mb-32 grid grid-cols-1 lg:grid-cols-12 gap-20">
+  <div class="lg:col-span-5">
+    <h2 class="text-4xl font-black tracking-tight mb-8">Declarative Biology</h2>
+    <p class="text-[16px] text-zinc-600 mb-12 leading-relaxed font-medium">Define your disease, targets, and search queries in one file. The studio builds everything else: pipelines, agents, website, chatbot.</p>
+    <!-- IDE-style config -->
+    <div class="bg-[#FCFCFC] border border-zinc-200 rounded-lg overflow-hidden flex shadow-2xl">
+      <div class="w-12 bg-zinc-100 border-r border-zinc-200 flex flex-col items-center py-6 gap-5 text-zinc-400">
+        <span class="material-symbols-outlined text-[16px]">settings</span>
+        <span class="material-symbols-outlined text-[16px]">layers</span>
+        <span class="material-symbols-outlined text-[16px]">hub</span>
+      </div>
+      <div class="flex-1 p-6 font-mono text-[13px] leading-relaxed">
+        <div class="flex gap-3"><div class="text-zinc-300 w-4 text-right select-none">1</div><div class="code-line-active w-full pl-1"><span class="text-amber-700 font-bold">disease:</span></div></div>
+        <div class="flex gap-3"><div class="text-zinc-300 w-4 text-right select-none">2</div><div class="pl-5"><span class="text-zinc-400">name:</span> <span class="text-emerald-600">"Parkinson's Disease"</span></div></div>
+        <div class="flex gap-3"><div class="text-zinc-300 w-4 text-right select-none">3</div><div class="pl-5"><span class="text-zinc-400">short_name:</span> <span class="text-emerald-600">"PD"</span></div></div>
+        <div class="flex gap-3 mt-2"><div class="text-zinc-300 w-4 text-right select-none">4</div><div class="code-line-active w-full pl-1"><span class="text-amber-700 font-bold">targets:</span></div></div>
+        <div class="flex gap-3"><div class="text-zinc-300 w-4 text-right select-none">5</div><div class="pl-5"><span class="text-zinc-400">- symbol:</span> <span class="text-emerald-600">"LRRK2"</span></div></div>
+        <div class="flex gap-3"><div class="text-zinc-300 w-4 text-right select-none">6</div><div class="pl-7"><span class="text-zinc-400">name:</span> <span class="text-emerald-600">"Leucine Rich Repeat Kinase 2"</span></div></div>
+        <div class="flex gap-3"><div class="text-zinc-300 w-4 text-right select-none">7</div><div class="pl-5"><span class="text-zinc-400">- symbol:</span> <span class="text-emerald-600">"GBA"</span></div></div>
+        <div class="flex gap-3"><div class="text-zinc-300 w-4 text-right select-none">8</div><div class="pl-5"><span class="text-zinc-400">- symbol:</span> <span class="text-emerald-600">"SNCA"</span></div></div>
+        <div class="flex gap-3 mt-2"><div class="text-zinc-300 w-4 text-right select-none">9</div><div class="code-line-active w-full pl-1"><span class="text-amber-700 font-bold">branding:</span></div></div>
+        <div class="flex gap-3"><div class="text-zinc-300 w-4 text-right select-none">10</div><div class="pl-5"><span class="text-zinc-400">app_name:</span> <span class="text-emerald-600">"PD Research Studio"</span><span class="cursor-blink ml-1"></span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="lg:col-span-7 grid grid-cols-2 gap-6">
+    <div class="bg-white border-2 border-amber-600 p-8 flex flex-col justify-between aspect-square group cursor-pointer hover:shadow-2xl hover:shadow-amber-900/10 transition-all">
+      <div>
+        <div class="flex justify-between items-center mb-6">
+          <span class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600">Active Node</span>
+          <div class="w-3 h-3 bg-amber-600 animate-pulse rounded-full"></div>
+        </div>
+        <h3 class="font-black text-3xl mt-4">HD Research</h3>
+        <p class="text-xs text-zinc-500 mt-2">Huntington's Disease Studio</p>
+      </div>
+      <a href="https://hd-research-agent.vercel.app" target="_blank" rel="noopener noreferrer" class="text-[11px] font-black uppercase tracking-widest text-amber-600 flex items-center gap-2 group-hover:gap-4 transition-all">
+        Enter Workspace <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </a>
+    </div>
+    <div class="bg-white border-2 border-zinc-100 p-8 flex flex-col justify-between aspect-square opacity-60 hover:opacity-100 transition-all cursor-pointer group">
+      <div>
+        <span class="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">Starter config</span>
+        <h3 class="font-black text-3xl mt-4 group-hover:text-amber-600 transition-colors">Parkinson's</h3>
+        <p class="text-xs text-zinc-500 mt-2">LRRK2, GBA, SNCA</p>
+      </div>
+      <span class="text-[11px] font-black uppercase tracking-widest text-zinc-400">Fork to deploy</span>
+    </div>
+    <div class="bg-white border-2 border-zinc-100 p-8 flex flex-col justify-between aspect-square opacity-60 hover:opacity-100 transition-all cursor-pointer group">
+      <div>
+        <span class="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">Starter config</span>
+        <h3 class="font-black text-3xl mt-4 group-hover:text-amber-600 transition-colors">ALS</h3>
+        <p class="text-xs text-zinc-500 mt-2">SOD1, TDP-43, FUS</p>
+      </div>
+      <span class="text-[11px] font-black uppercase tracking-widest text-zinc-400">Fork to deploy</span>
+    </div>
+    <div class="bg-zinc-100 border-2 border-dashed border-zinc-300 p-8 flex flex-col justify-center items-center aspect-square hover:border-zinc-400 transition-all cursor-pointer group">
+      <div class="w-12 h-12 rounded-full border-2 border-zinc-300 flex items-center justify-center mb-4 group-hover:border-zinc-400 transition-all">
+        <span class="material-symbols-outlined text-zinc-400 group-hover:text-zinc-600">add</span>
+      </div>
+      <h3 class="font-black text-[11px] uppercase tracking-[0.2em] text-zinc-500">Your disease</h3>
+    </div>
+  </div>
+</section>
+
+<!-- Infrastructure -->
+<section class="relative z-10 px-10 max-w-[1440px] mx-auto mb-32">
+  <div class="text-center mb-16">
+    <span class="text-[12px] font-black uppercase tracking-[0.5em] text-zinc-400">Compute Agnostic Deployment</span>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+    <div class="bg-white border border-zinc-100 p-12 flex flex-col items-center group hover:shadow-xl hover:border-transparent transition-all duration-500">
+      <span class="material-symbols-outlined text-4xl mb-6 text-zinc-300 group-hover:text-amber-600 transition-colors">laptop_mac</span>
+      <span class="text-[12px] font-bold uppercase tracking-[0.2em]">Local Laptop</span>
+      <span class="text-[11px] text-zinc-400 mt-2">Ollama, Mac M2, RTX 5090</span>
+    </div>
+    <div class="bg-white border border-zinc-100 p-12 flex flex-col items-center group hover:shadow-xl hover:border-transparent transition-all duration-500">
+      <span class="material-symbols-outlined text-4xl mb-6 text-zinc-300 group-hover:text-amber-600 transition-colors">terminal</span>
+      <span class="text-[12px] font-bold uppercase tracking-[0.2em]">Kaggle Node</span>
+      <span class="text-[11px] text-zinc-400 mt-2">Free GPU notebooks</span>
+    </div>
+    <div class="bg-white border border-zinc-100 p-12 flex flex-col items-center group hover:shadow-xl hover:border-transparent transition-all duration-500">
+      <span class="material-symbols-outlined text-4xl mb-6 text-zinc-300 group-hover:text-amber-600 transition-colors">cloud</span>
+      <span class="text-[12px] font-bold uppercase tracking-[0.2em]">Cloud Native</span>
+      <span class="text-[11px] text-zinc-400 mt-2">OpenAI, Anthropic, NIM</span>
+    </div>
+    <div class="bg-white border border-zinc-100 p-12 flex flex-col items-center group hover:shadow-xl hover:border-transparent transition-all duration-500">
+      <span class="material-symbols-outlined text-4xl mb-6 text-zinc-300 group-hover:text-amber-600 transition-colors">smartphone</span>
+      <span class="text-[12px] font-bold uppercase tracking-[0.2em]">On-device Edge</span>
+      <span class="text-[11px] text-zinc-400 mt-2">Gemma 2B, offline</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA + Who it's for -->
+<section class="relative z-10 px-10 max-w-[1440px] mx-auto mb-10">
+  <div class="rounded-2xl overflow-hidden terminal-shadow bg-[#121212]">
+    <div class="p-16 lg:p-20">
+      <h2 class="text-5xl font-black tracking-tighter text-white mb-16 leading-tight">Pick a disease.<br/>Configure the workspace.<br/><span class="text-amber-500">Start contributing.</span></h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div class="group">
+          <div class="w-10 h-10 border border-amber-600/30 flex items-center justify-center mb-4 group-hover:bg-amber-600 transition-all">
+            <span class="material-symbols-outlined text-amber-600 text-[18px] group-hover:text-white">terminal</span>
+          </div>
+          <h4 class="font-black text-[12px] uppercase tracking-widest text-zinc-100 mb-2">Engineers</h4>
+          <p class="text-[13px] text-zinc-500 font-light leading-relaxed">You know Python and ML. This gives you the biomedical data layer. Fork, configure, run experiments.</p>
+        </div>
+        <div class="group">
+          <div class="w-10 h-10 border border-amber-600/30 flex items-center justify-center mb-4 group-hover:bg-amber-600 transition-all">
+            <span class="material-symbols-outlined text-amber-600 text-[18px] group-hover:text-white">diversity_3</span>
+          </div>
+          <h4 class="font-black text-[12px] uppercase tracking-widest text-zinc-100 mb-2">Researchers</h4>
+          <p class="text-[13px] text-zinc-500 font-light leading-relaxed">Automated literature review. The platform reads papers overnight. You focus on the science.</p>
+        </div>
+        <div class="group">
+          <div class="w-10 h-10 border border-amber-600/30 flex items-center justify-center mb-4 group-hover:bg-amber-600 transition-all">
+            <span class="material-symbols-outlined text-amber-600 text-[18px] group-hover:text-white">science</span>
+          </div>
+          <h4 class="font-black text-[12px] uppercase tracking-widest text-zinc-100 mb-2">Patient communities</h4>
+          <p class="text-[13px] text-zinc-500 font-light leading-relaxed">Research in plain language. 22 languages. A chatbot that cites its sources, not hallucinate.</p>
+        </div>
+        <div class="group">
+          <div class="w-10 h-10 border border-amber-600/30 flex items-center justify-center mb-4 group-hover:bg-amber-600 transition-all">
+            <span class="material-symbols-outlined text-amber-600 text-[18px] group-hover:text-white">volunteer_activism</span>
+          </div>
+          <h4 class="font-black text-[12px] uppercase tracking-widest text-zinc-100 mb-2">Foundations</h4>
+          <p class="text-[13px] text-zinc-500 font-light leading-relaxed">Deploy a research workspace for your disease community. Open source. No vendor dependency.</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-5">
+        <a href="https://hd-research-agent.vercel.app" target="_blank" rel="noopener noreferrer" class="bg-amber-600 text-white px-10 py-5 text-[12px] font-black uppercase tracking-[0.2em] hover:bg-amber-500 transition-colors">Explore HD Studio</a>
+        <a href="https://github.com/jravinder/biotech-research-hub" target="_blank" rel="noopener noreferrer" class="border border-zinc-700 text-zinc-300 px-10 py-5 text-[12px] font-black uppercase tracking-[0.2em] hover:border-zinc-500 hover:text-white transition-colors">Fork on GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="relative z-10 w-full bg-white border-t border-zinc-100 py-12 px-10">
+  <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+    <div class="flex flex-col gap-2">
+      <div class="text-[12px] font-black uppercase tracking-[0.2em]">Biotech Research Studio</div>
+      <p class="text-zinc-400 text-[11px] font-medium uppercase tracking-widest">MIT License.</p>
+    </div>
+    <div class="flex gap-10">
+      <a href="https://github.com/jravinder/biotech-research-hub" target="_blank" rel="noopener noreferrer" class="text-zinc-400 text-[11px] font-bold uppercase tracking-[0.2em] hover:text-amber-700 transition-colors">GitHub</a>
+      <a href="https://hd-research-agent.vercel.app" target="_blank" rel="noopener noreferrer" class="text-zinc-400 text-[11px] font-bold uppercase tracking-[0.2em] hover:text-amber-700 transition-colors">HD Demo</a>
+    </div>
+  </div>
+  <p class="text-[11px] text-zinc-300 text-center mt-6 max-w-lg mx-auto">Research and educational platform, not medical advice. For disease-specific support, contact the relevant patient organization.</p>
+</footer>
+
+</body></html>
